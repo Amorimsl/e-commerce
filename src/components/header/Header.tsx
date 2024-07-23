@@ -35,7 +35,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-
       <div
         className={`md:hidden ${
           isOpen
