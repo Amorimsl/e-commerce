@@ -10,6 +10,8 @@ export default {
       colors: {
         'custom-bg': 'rgba(255, 243, 227, 1)',
         'color-transparent': ' rgba(159, 159, 159, 1)',
+        'custom-text-yellow': 'rgba(184, 142, 47, 1)',
+        'custom-card-bg': ' rgba(244, 245, 247, 1)',
       },
     },
   },
