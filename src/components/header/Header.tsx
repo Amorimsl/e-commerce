@@ -6,17 +6,19 @@ import shopSvgUrl from '../../assets/Shop.svg';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className=" py-4 px-4 md:px-6 md:py-6 relative md:flex md:justify-around md:items-center ">
+    <header className="py-4 px-4 md:px-6 md:py-6 relative md:flex md:justify-around md:items-center">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img src={logoSvgUrl} alt="Logo SVG" className="w-8 h-8" />
-          <p className=" font-bold text-2xl md:text-3xl">Furniro</p>
+          <p className="font-bold text-2xl md:text-3xl">Furniro</p>
         </div>
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className=" focus:outline-none"
+            aria-label="Toggle mobile menu"
+            className="focus:outline-none"
           >
             <svg
               className="w-6 h-6"
@@ -41,16 +43,18 @@ const Header = () => {
             ? 'fixed top-16 right-4 w-64 bg-custom-bg rounded-lg shadow-lg p-4 z-10'
             : 'hidden'
         }`}
+        role="navigation"
+        aria-label="Mobile Navigation"
       >
         <nav className="flex flex-col items-start">
           <ul className="mb-4">
             <li>
-              <Link to="/" className="block py-2 px-4 ">
+              <Link to="/" className="block py-2 px-4">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/Shop" className="block py-2 px-4 ">
+              <Link to="/Shop" className="block py-2 px-4">
                 Shop
               </Link>
             </li>
@@ -73,7 +77,11 @@ const Header = () => {
       </div>
 
       <div className="hidden md:flex gap-4">
-        <nav className="flex gap-12 font-medium text-base">
+        <nav
+          className="flex gap-12 font-medium text-base"
+          role="navigation"
+          aria-label="Desktop Navigation"
+        >
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -96,7 +104,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <div className="hidden  md:flex md:gap-6 ">
+      <div className="hidden md:flex md:gap-6">
         <img src={loginSvgUrl} alt="Login" />
         <img src={shopSvgUrl} alt="Shop" />
       </div>

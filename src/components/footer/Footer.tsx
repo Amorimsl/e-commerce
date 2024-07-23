@@ -33,7 +33,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-10 border-t border-black bg-gray-100">
+    <footer className="py-10 border-t border-black ">
       <div className="container mx-auto px-4 md:px-8">
         <div className="md:flex lg:justify-around">
           <div className="flex flex-col gap-6 md:gap-16 mb-6 md:mb-0">
