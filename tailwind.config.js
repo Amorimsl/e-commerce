@@ -12,6 +12,7 @@ export default {
         'color-transparent': ' rgba(159, 159, 159, 1)',
         'custom-text-yellow': 'rgba(184, 142, 47, 1)',
         'custom-card-bg': ' rgba(244, 245, 247, 1)',
+        'custom-new-bg': 'rgba(46, 193, 172, 1)',
       },
     },
   },

@@ -1,21 +1,12 @@
 import { useState, useEffect } from 'react';
 import Slider from '../components/slider/Slider';
 import Products from '../components/products/Products';
-
-interface Product {
-  id: number;
-  title: string;
-  images: {
-    mainImage: string;
-  };
-  description: {
-    short: string;
-  };
-  normalPrice: number;
-}
+import { useProducts } from '../context/exportContext';
+import ButtonShowMore from '../components/ButtonShowMore';
 
 const Home = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { products, setProducts } = useProducts();
+  const { visibleProducts, setVisibleProducts } = useProducts();
   const [backgroundImage, setBackgroundImage] = useState('');
   const [diningName, setDiningName] = useState('');
   const [diningImage, setDiningImage] = useState('');
@@ -49,7 +40,7 @@ const Home = () => {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
-  const selectedProducts = products.slice(52, 60);
+  const selectedProducts = products.slice(1, 11);
 
   return (
     <>
@@ -117,8 +108,9 @@ const Home = () => {
         </div>
       </section>
 
-      <Products products={products} />
+      <Products products={products} visibleProducts={visibleProducts} />
 
+      <ButtonShowMore />
       <Slider products={products} />
 
       <section className="grid grid-cols-8 grid-rows-8 gap-4 mx-8 h-screen">

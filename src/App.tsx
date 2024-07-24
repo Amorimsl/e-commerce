@@ -1,10 +1,11 @@
 import Header from './components/header/Header';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home.js';
-import Shop from './pages/Shop.js';
-import About from './pages/About.js';
-import Contact from './pages/Contact.js';
-import Footer from './components/footer/Footer.js';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Footer from './components/footer/Footer';
+
 function App() {
   return (
     <div>
