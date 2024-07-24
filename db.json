@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 0,
-      "nome": "new object",
+      "nome": "new product",
       "preco": 1500,
       "descricao": "acapulco",
       "categoria": "living",

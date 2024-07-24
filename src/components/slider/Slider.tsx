@@ -3,17 +3,21 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 interface Product {
   id: number;
-  nome: string;
-  descricao: string;
-  preco: number;
-  imagens: { url: string }[];
+  title: string;
+  images: {
+    mainImage: string;
+  };
+  description: {
+    short: string;
+  };
+  normalPrice: number;
 }
 
-interface SliderProps {
+interface ProductsProps {
   products: Product[];
 }
 
-const Slider: React.FC<SliderProps> = ({ products }) => {
+const Slider: React.FC<ProductsProps> = ({ products }) => {
   return (
     <section className="flex p-8 justify-center bg-custom-bg ">
       <div className="flex flex-col items-start justify-center w-1/4">
@@ -32,7 +36,7 @@ const Slider: React.FC<SliderProps> = ({ products }) => {
         <Splide
           options={{
             type: 'loop',
-            perPage: 3,
+            perPage: 1,
             focus: 'center',
             gap: '1rem',
             pagination: false,
@@ -58,8 +62,8 @@ const Slider: React.FC<SliderProps> = ({ products }) => {
                 }}
               >
                 <img
-                  src={product.imagens[0].url}
-                  alt={product.nome}
+                  src={product.images.mainImage}
+                  alt={product.title}
                   className="object-cover w-full h-full"
                 />
               </div>

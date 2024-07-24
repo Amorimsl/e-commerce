@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 import Slider from '../components/slider/Slider';
+import Products from '../components/products/Products';
 
 interface Product {
   id: number;
-  nome: string;
-  descricao: string;
-  preco: number;
-  imagens: { url: string }[];
+  title: string;
+  images: {
+    mainImage: string;
+  };
+  description: {
+    short: string;
+  };
+  normalPrice: number;
 }
 
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [visibleProducts, setVisibleProducts] = useState(8);
   const [backgroundImage, setBackgroundImage] = useState('');
   const [diningName, setDiningName] = useState('');
   const [diningImage, setDiningImage] = useState('');
@@ -25,28 +29,28 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
+
         const firstProduct = data[0];
-        const firstImageUrl = firstProduct.imagens[0].url;
+        const firstImageUrl = firstProduct.images.mainImage;
         setBackgroundImage(firstImageUrl);
 
-        const diningInfo = data[21];
-        setDiningName(diningInfo.nome);
-        setDiningImage(diningInfo.imagens[0].url);
+        const diningInfo = data[61];
+        setDiningName(diningInfo.title);
+        setDiningImage(diningInfo.images.mainImage);
 
-        const bedroomInfo = data[22];
-        setBedroomName(bedroomInfo.nome);
-        setBedroomImage(bedroomInfo.imagens[0].url);
+        const bedroomInfo = data[62];
+        setBedroomName(bedroomInfo.title);
+        setBedroomImage(bedroomInfo.images.mainImage);
 
-        const livingInfo = data[23];
-        setLivingName(livingInfo.nome);
-        setLivingImage(livingInfo.imagens[0].url);
+        const livingInfo = data[63];
+        setLivingName(livingInfo.title);
+        setLivingImage(livingInfo.images.mainImage);
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
-  const handleShowMore = () => {
-    setVisibleProducts((prevVisible) => prevVisible + 8);
-  };
-  const selectedProducts = products.slice(0, 10);
+
+  const selectedProducts = products.slice(52, 60);
+
   return (
     <>
       <section
@@ -78,6 +82,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <section className="flex flex-col items-center justify-center p-6 bg-gray-100">
         <h1 className="text-4xl font-bold mb-4">Browse The Range</h1>
         <p className="text-lg text-center mb-8">
@@ -112,42 +117,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="p-8 flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-4 text-center">Our Products</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[1220px] ">
-          {products.slice(0, visibleProducts).map((product) => (
-            <div
-              key={product.id}
-              className="flex flex-col items-center bg-white shadow-xl rounded-lg overflow-hidden bg-custom-card-bg"
-            >
-              <div className="w-[285px] h-[301px]">
-                <img
-                  src={product.imagens[0].url}
-                  alt={product.nome}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-4   w-full  bg-custom-card-bg h-44">
-                <p className="text-xl font-semibold mb-2">{product.nome}</p>
-                <p className="text-gray-600 mb-2">{product.descricao}</p>
-                <div className=" p-2  font-bold rounded-lg">
-                  <p>RS {product.preco}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        {products.length > visibleProducts && (
-          <div className="text-center mt-6">
-            <button
-              onClick={handleShowMore}
-              className="text-custom-text-yellow  font-semibold  border border-custom-text-yellow py-2 px-16 "
-            >
-              Show More
-            </button>
-          </div>
-        )}
-      </section>
+      <Products products={products} />
+
       <Slider products={products} />
 
       <section className="grid grid-cols-8 grid-rows-8 gap-4 mx-8 h-screen">
@@ -168,8 +139,8 @@ const Home = () => {
             } mt-7`}
           >
             <img
-              src={product.imagens[0].url}
-              alt={product.nome}
+              src={product.images.mainImage}
+              alt={product.title}
               className="w-full h-full object-cover rounded-lg"
               style={{ minHeight: '200px' }}
             />
