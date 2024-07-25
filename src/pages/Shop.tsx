@@ -7,30 +7,42 @@ import Filter from '../assets/filters/filter.svg';
 import Menu from '../assets/filters/menu.svg';
 import Default from '../assets/filters/default.svg';
 import ButtonGroup from '../components/ButtonGroup';
+import { useParams } from 'react-router-dom';
+import { Product } from '../context/context';
 
 const Shop = () => {
-  const { products, visibleProducts, setProducts, setVisibleProducts } =
+  const { visibleProducts, setVisibleProducts, productsShop, setProductsShop } =
     useProducts();
   const [currentPage, setCurrentPage] = useState(1);
+  const { tag } = useParams();
 
   const visibleShop = 16;
 
   setVisibleProducts(visibleShop);
 
-  const totalPages = Math.ceil(products.length / visibleProducts);
+  const totalPages = Math.ceil(productsShop.length / visibleProducts);
   const startIndex = (currentPage - 1) * visibleProducts;
   const endIndex = startIndex + visibleProducts;
-  const currentProducts = products.slice(startIndex, endIndex);
-
+  const currentProducts = productsShop.slice(startIndex, endIndex);
   useEffect(() => {
-    fetch('http://localhost:3000/products')
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/products');
+        const data: Product[] = await response.json();
 
+        if (tag) {
+          const filtered = data.filter((product) => product.tags.includes(tag));
+          setProductsShop(filtered);
+        } else {
+          setProductsShop(data);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchProducts();
+  }, [tag, setProductsShop]);
   return (
     <div>
       <ImageCards />

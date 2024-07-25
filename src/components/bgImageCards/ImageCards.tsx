@@ -6,7 +6,8 @@ const ImageCards = () => {
   const location = useLocation();
   const path = location.pathname.slice(1);
 
-  const displayPath = path.charAt(0).toUpperCase() + path.slice(1);
+  const mainPath = path.split('/')[0];
+  const displayPath = mainPath.charAt(0).toUpperCase() + mainPath.slice(1);
 
   return (
     <div

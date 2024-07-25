@@ -5,6 +5,7 @@ import loginSvgUrl from '../../assets/Login.svg';
 import shopSvgUrl from '../../assets/Shop.svg';
 import { useProducts } from '../../context/exportContext';
 import CloseItem from '../../assets/AddtoCardIcon/CloseItem.svg';
+import CloseTooltip from '../../assets/CloseAddtoCard.svg';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,7 +96,12 @@ const Header = () => {
           </ul>
           <div className="flex gap-4">
             <img src={loginSvgUrl} alt="Login" className="w-6 h-6" />
-            <img src={shopSvgUrl} alt="Shop" className="w-6 h-6" />
+            <img
+              src={shopSvgUrl}
+              alt="Shop"
+              className="w-6 h-6"
+              onClick={handleCartClick}
+            />
           </div>
         </nav>
       </div>
@@ -142,14 +148,14 @@ const Header = () => {
             className="fixed inset-0 bg-gray-800 bg-opacity-50 z-20"
             onClick={handleCloseTooltip}
           ></div>
-          <div className="fixed top-0 right-0 mt-4 mr-4 w-[417px] h-[746px] bg-white p-4 z-30 flex flex-col">
+          <div className="fixed top-0 right-0  mr-4 w-[417px] h-[746px] bg-white p-4 z-30 flex flex-col">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Shopping Cart</h2>
               <button
                 onClick={handleCloseTooltip}
                 className="text-gray-600 hover:text-gray-800 focus:outline-none"
               >
-                &times;
+                <img src={CloseTooltip} />
               </button>
             </div>
             <div className="flex-grow overflow-y-auto">
@@ -172,7 +178,9 @@ const Header = () => {
                         <p className="text-gray-600">
                           {item.quantity} <span>X</span>
                         </p>
-                        <p className="text-gray-800">RS {item.normalPrice}</p>
+                        <p className="text-custom-text-yellow font-medium">
+                          RS {item.normalPrice}
+                        </p>
                       </div>
                     </div>
                     <button
@@ -191,7 +199,7 @@ const Header = () => {
             </div>
             <div className="flex justify-between items-center mt-4">
               <p className="font-bold">SubTotal</p>
-              <span className="font-bold">
+              <span className="font-semibold text-custom-text-yellow ">
                 RS{' '}
                 {addToCard.reduce(
                   (total, item) =>

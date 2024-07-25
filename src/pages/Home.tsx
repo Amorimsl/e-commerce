@@ -3,6 +3,8 @@ import Slider from '../components/slider/Slider';
 import Products from '../components/products/Products';
 import { useProducts } from '../context/exportContext';
 import ButtonShowMore from '../components/ButtonShowMore';
+import { useNavigate } from 'react-router-dom';
+import { Product } from '../context/context';
 
 const Home = () => {
   const { products, setProducts } = useProducts();
@@ -38,9 +40,19 @@ const Home = () => {
         setLivingImage(livingInfo.images.mainImage);
       })
       .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  }, [setProducts]);
 
   const selectedProducts = products.slice(1, 11);
+
+  const navigate = useNavigate();
+
+  const handleClick = (tag: string) => {
+    const filtered: Product[] = products.filter((product) =>
+      product.tags.includes(tag)
+    );
+    setProducts(filtered);
+    navigate(`/shop/${tag}`);
+  };
 
   return (
     <>
@@ -81,7 +93,10 @@ const Home = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-          <div className="flex flex-col items-center">
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            onClick={() => handleClick('Cozinha')}
+          >
             <img
               src={diningImage}
               alt={diningName}
@@ -89,7 +104,10 @@ const Home = () => {
             />
             <p className="text-center text-xl">{diningName}</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            onClick={() => handleClick('Sala')}
+          >
             <img
               src={livingImage}
               alt={livingName}
@@ -97,7 +115,10 @@ const Home = () => {
             />
             <p className="text-center text-xl">{livingName}</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            onClick={() => handleClick('Quarto')}
+          >
             <img
               src={bedroomImage}
               alt={bedroomName}

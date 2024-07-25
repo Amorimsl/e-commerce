@@ -1,16 +1,5 @@
 import GridProduct from '../gridProduct/gridProduct';
-
-interface Product {
-  id: number;
-  title: string;
-  images: {
-    mainImage: string;
-  };
-  description: {
-    short: string;
-  };
-  normalPrice: number;
-}
+import { Product } from '../../context/context';
 
 interface ProductsProps {
   products: Product[];

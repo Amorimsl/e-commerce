@@ -40,6 +40,8 @@ interface AddToCard extends Product {
 export interface ProductsContextType {
   products: Product[];
   setProducts: Dispatch<SetStateAction<Product[]>>;
+  productsShop: Product[];
+  setProductsShop: Dispatch<SetStateAction<Product[]>>;
   visibleProducts: number;
   setVisibleProducts: Dispatch<SetStateAction<number>>;
   addToCart: (product: AddToCard) => void;
@@ -55,6 +57,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productsShop, setProductsShop] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(8);
   const [addToCard, setAddToCard] = useState<AddToCard[]>([]);
 
@@ -65,7 +68,6 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
       );
 
       if (existingProductIndex !== -1) {
-        // Se o produto já está no carrinho, atualize a quantidade
         const updatedProducts = [...prevAddToCard];
         updatedProducts[existingProductIndex] = {
           ...updatedProducts[existingProductIndex],
@@ -73,7 +75,6 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         };
         return updatedProducts;
       } else {
-        // Se o produto não está no carrinho, adicione-o com quantidade 1
         return [...prevAddToCard, { ...product, quantity: 1 }];
       }
     });
@@ -89,6 +90,8 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         addToCart,
         addToCard,
         setAddToCard,
+        productsShop,
+        setProductsShop,
       }}
     >
       {children}
