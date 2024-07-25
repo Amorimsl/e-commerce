@@ -6,7 +6,7 @@ import ButtonShowMore from '../components/ButtonShowMore';
 
 const Home = () => {
   const { products, setProducts } = useProducts();
-  const { visibleProducts, setVisibleProducts } = useProducts();
+  const { visibleProducts } = useProducts();
   const [backgroundImage, setBackgroundImage] = useState('');
   const [diningName, setDiningName] = useState('');
   const [diningImage, setDiningImage] = useState('');
@@ -110,7 +110,10 @@ const Home = () => {
 
       <Products products={products} visibleProducts={visibleProducts} />
 
-      <ButtonShowMore />
+      <div className="mb-2">
+        <ButtonShowMore />
+      </div>
+
       <Slider products={products} />
 
       <section className="grid grid-cols-8 grid-rows-8 gap-4 mx-8 h-screen">

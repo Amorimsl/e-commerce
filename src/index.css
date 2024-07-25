@@ -5,3 +5,14 @@
 .splide__arrow--prev {
   display: none;
 }
+
+.splide__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.highlighted-slide {
+  transition: height 0.5s ease-in-out;
+}

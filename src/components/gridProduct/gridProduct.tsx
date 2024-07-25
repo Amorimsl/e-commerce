@@ -1,8 +1,50 @@
+import React from 'react';
+import { useProducts } from '../../context/exportContext'; // Atualize o caminho conforme necessário
 import Share from '../../assets/Share.svg';
 import Compare from '../../assets/Compare.svg';
 import heart from '../../assets/Heart.svg';
+import { Product } from '../../context/context';
 
-const GridProduct = ({ products, visibleProducts }) => {
+const GridProduct: React.FC<{
+  products: Product[];
+  visibleProducts: number;
+}> = ({ products, visibleProducts }) => {
+  const { addToCart } = useProducts();
+
+  const handleAddToCart = (product: Product) => {
+    const {
+      category,
+      images,
+      normalPrice,
+      id,
+      title,
+      sku,
+      tags,
+      salePrice,
+      discountPercentage,
+      colors,
+      sizes,
+      rating,
+      description,
+    } = product;
+    addToCart({
+      id,
+      title,
+      category,
+      images,
+      normalPrice,
+      sku,
+      tags,
+      salePrice,
+      discountPercentage,
+      colors,
+      sizes,
+      rating,
+      description,
+      quantity: 1,
+    });
+  };
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[1220px]">
       {products.slice(0, visibleProducts).map((product) => (
@@ -24,7 +66,10 @@ const GridProduct = ({ products, visibleProducts }) => {
               </div>
             )}
             <div className="absolute inset-0 bg-gray-900 bg-opacity-50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity duration-300">
-              <button className="bg-white text-custom-text-yellow px-12 py-3  font-semibold">
+              <button
+                className="bg-white text-custom-text-yellow px-12 py-3 font-semibold"
+                onClick={() => handleAddToCart(product)}
+              >
                 Add to Cart
               </button>
               <div className="flex justify-between text-white mt-2 gap-2">

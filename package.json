@@ -20,6 +20,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide": "^4.1.4",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^18.3.3",
@@ -37,8 +39,6 @@
     "tailwindcss": "^3.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
-    "vitest": "^2.0.4",
-    "@splidejs/react-splide": "^0.7.12",
-    "@splidejs/splide": "^4.1.4"
+    "vitest": "^2.0.4"
   }
 }
