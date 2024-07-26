@@ -5,6 +5,8 @@ import Shop from './pages/Shop';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Footer from './components/footer/Footer';
+import SinglePage from './pages/SinglePage';
+import Cart from './pages/Cart';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/Shop/:tag" element={<Shop />} />
           <Route path="About" element={<About />} />
           <Route path="Contact" element={<Contact />} />
+          <Route path="/SinglePage" element={<SinglePage />} />
+          <Route path="/Cart" element={<Cart />} />
         </Routes>
         <Footer />
       </Router>

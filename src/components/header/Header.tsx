@@ -18,7 +18,7 @@ const Header = () => {
   const handleCloseTooltip = () => {
     setShowTooltip(false);
   };
-  const handleRemoveItem = (id: number) => {
+  const handleRemoveItem = (id: string) => {
     setAddToCard((prevAddToCard) => {
       const updatedAddToCard = prevAddToCard
         .map((item) =>
@@ -169,11 +169,11 @@ const Header = () => {
                   >
                     <img
                       src={item.images.mainImage}
-                      alt={item.category}
+                      alt={item.title}
                       className="w-[108px] h-[105px] object-cover rounded"
                     />
                     <div className="ml-4 flex-1">
-                      <p className="text-lg font-semibold">{item.category}</p>
+                      <p className="text-lg font-semibold">{item.title}</p>
                       <div className="flex gap-3">
                         <p className="text-gray-600">
                           {item.quantity} <span>X</span>

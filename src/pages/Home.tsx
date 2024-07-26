@@ -5,17 +5,14 @@ import { useProducts } from '../context/exportContext';
 import ButtonShowMore from '../components/ButtonShowMore';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../context/context';
+import dinningImage from '../assets/ImageCategory/dinning.svg';
+import livingImage from '../assets/ImageCategory/living.svg';
+import bedroomImage from '../assets/ImageCategory/bedroom.svg';
 
 const Home = () => {
   const { products, setProducts } = useProducts();
   const { visibleProducts } = useProducts();
   const [backgroundImage, setBackgroundImage] = useState('');
-  const [diningName, setDiningName] = useState('');
-  const [diningImage, setDiningImage] = useState('');
-  const [bedroomName, setBedroomName] = useState('');
-  const [bedroomImage, setBedroomImage] = useState('');
-  const [livingName, setLivingName] = useState('');
-  const [livingImage, setLivingImage] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:3000/products')
@@ -26,23 +23,11 @@ const Home = () => {
         const firstProduct = data[0];
         const firstImageUrl = firstProduct.images.mainImage;
         setBackgroundImage(firstImageUrl);
-
-        const diningInfo = data[61];
-        setDiningName(diningInfo.title);
-        setDiningImage(diningInfo.images.mainImage);
-
-        const bedroomInfo = data[62];
-        setBedroomName(bedroomInfo.title);
-        setBedroomImage(bedroomInfo.images.mainImage);
-
-        const livingInfo = data[63];
-        setLivingName(livingInfo.title);
-        setLivingImage(livingInfo.images.mainImage);
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, [setProducts]);
 
-  const selectedProducts = products.slice(1, 11);
+  const selectedProducts = products.slice(16, 26);
 
   const navigate = useNavigate();
 
@@ -52,6 +37,7 @@ const Home = () => {
     );
     setProducts(filtered);
     navigate(`/shop/${tag}`);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -98,11 +84,11 @@ const Home = () => {
             onClick={() => handleClick('Cozinha')}
           >
             <img
-              src={diningImage}
-              alt={diningName}
+              src={dinningImage}
+              alt="dinning"
               className="w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg  h-96  mb-2 object-cover"
             />
-            <p className="text-center text-xl">{diningName}</p>
+            <p className="text-center text-xl">{'dinning'}</p>
           </div>
           <div
             className="flex flex-col items-center cursor-pointer"
@@ -110,10 +96,10 @@ const Home = () => {
           >
             <img
               src={livingImage}
-              alt={livingName}
+              alt={'living'}
               className="w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg  h-96  mb-2 object-cover"
             />
-            <p className="text-center text-xl">{livingName}</p>
+            <p className="text-center text-xl">{'living'}</p>
           </div>
           <div
             className="flex flex-col items-center cursor-pointer"
@@ -121,10 +107,10 @@ const Home = () => {
           >
             <img
               src={bedroomImage}
-              alt={bedroomName}
+              alt={'bedroom'}
               className="w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg h-96 mb-2 object-cover"
             />
-            <p className="text-center text-xl">{bedroomName}</p>
+            <p className="text-center text-xl">{'bedroom'}</p>
           </div>
         </div>
       </section>

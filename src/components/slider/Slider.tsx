@@ -2,24 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import ArrowSlider from '../../assets/arraySlider.svg';
+import { Product } from '../../context/context';
 
-interface Product {
-  id: number;
-  title: string;
-  images: {
-    mainImage: string;
-  };
-  description: {
-    short: string;
-  };
-  normalPrice: number;
-}
-
-interface ProductsProps {
+interface SliderProps {
   products: Product[];
 }
-
-const Slider: React.FC<ProductsProps> = ({ products }) => {
+const Slider: React.FC<SliderProps> = ({ products }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const splideRef = useRef<Splide>(null);
 
@@ -83,7 +71,7 @@ const Slider: React.FC<ProductsProps> = ({ products }) => {
               1440: { perPage: 2, gap: '2px' },
             },
           }}
-          onMove={(splide) => {
+          onMove={(splide: Splide) => {
             setActiveIndex(splide.index);
           }}
         >

@@ -6,34 +6,29 @@ import React, {
   SetStateAction,
 } from 'react';
 
-export interface Product {
-  id: number;
+export type Product = {
+  id: string;
   title: string;
   category: string;
+  images: {
+    mainImage: string;
+    gallery: string[];
+  };
+  normalPrice: number;
   sku: string;
-  tags: string[];
+  tags: string[] | string;
   salePrice: number;
-  discountPercentage: number;
+  discountPercentage?: number;
   colors: string[];
   sizes: string[];
   rating: number;
-
-  images: {
-    mainImage: string;
-  };
   description: {
     short: string;
   };
-  normalPrice: number;
   new?: boolean;
-}
+};
 
 interface AddToCard extends Product {
-  category: string;
-  images: {
-    mainImage: string;
-  };
-  normalPrice: number;
   quantity: number;
 }
 
@@ -47,6 +42,8 @@ export interface ProductsContextType {
   addToCart: (product: AddToCard) => void;
   addToCard: AddToCard[];
   setAddToCard: Dispatch<SetStateAction<AddToCard[]>>;
+  singleProduct: Product | null;
+  setSingleProduct: Dispatch<SetStateAction<Product | null>>;
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(
@@ -60,22 +57,25 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   const [productsShop, setProductsShop] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(8);
   const [addToCard, setAddToCard] = useState<AddToCard[]>([]);
+  const [singleProduct, setSingleProduct] = useState<Product | null>(null);
 
   const addToCart = (product: AddToCard) => {
-    setAddToCard((prevAddToCard) => {
-      const existingProductIndex = prevAddToCard.findIndex(
+    setAddToCard((prevAddToCart) => {
+      const existingProductIndex = prevAddToCart.findIndex(
         (item) => item.id === product.id
       );
 
       if (existingProductIndex !== -1) {
-        const updatedProducts = [...prevAddToCard];
+        const updatedProducts = [...prevAddToCart];
         updatedProducts[existingProductIndex] = {
           ...updatedProducts[existingProductIndex],
-          quantity: (updatedProducts[existingProductIndex].quantity || 1) + 1,
+          quantity:
+            (updatedProducts[existingProductIndex].quantity || 1) +
+            (product.quantity || 1),
         };
         return updatedProducts;
       } else {
-        return [...prevAddToCard, { ...product, quantity: 1 }];
+        return [...prevAddToCart, { ...product }];
       }
     });
   };
@@ -92,6 +92,8 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         setAddToCard,
         productsShop,
         setProductsShop,
+        singleProduct,
+        setSingleProduct,
       }}
     >
       {children}

@@ -1,17 +1,23 @@
 import React from 'react';
-import { useProducts } from '../../context/exportContext'; // Atualize o caminho conforme necessário
+import { useProducts } from '../../context/exportContext';
 import Share from '../../assets/Share.svg';
 import Compare from '../../assets/Compare.svg';
 import heart from '../../assets/Heart.svg';
 import { Product } from '../../context/context';
+import { useNavigate } from 'react-router-dom';
 
 const GridProduct: React.FC<{
   products: Product[];
   visibleProducts: number;
 }> = ({ products, visibleProducts }) => {
-  const { addToCart } = useProducts();
+  const { addToCart, setSingleProduct } = useProducts();
+  const navigate = useNavigate();
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (
+    product: Product,
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.stopPropagation();
     const {
       category,
       images,
@@ -45,12 +51,19 @@ const GridProduct: React.FC<{
     });
   };
 
+  const handleCardClick = (product: Product) => {
+    setSingleProduct(product);
+    navigate('/SinglePage');
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[1220px]">
       {products.slice(0, visibleProducts).map((product) => (
         <div
           key={product.id}
-          className="relative bg-white rounded-lg overflow-hidden shadow-lg group flex flex-col"
+          className="relative bg-white rounded-lg overflow-hidden shadow-lg group flex flex-col cursor-pointer"
+          onClick={() => handleCardClick(product)}
         >
           <div className="relative">
             <img
@@ -68,7 +81,7 @@ const GridProduct: React.FC<{
             <div className="absolute inset-0 bg-gray-900 bg-opacity-50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity duration-300">
               <button
                 className="bg-white text-custom-text-yellow px-12 py-3 font-semibold"
-                onClick={() => handleAddToCart(product)}
+                onClick={(e) => handleAddToCart(product, e)}
               >
                 Add to Cart
               </button>
