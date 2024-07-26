@@ -53,6 +53,7 @@ const GridProduct: React.FC<{
 
   const handleCardClick = (product: Product) => {
     setSingleProduct(product);
+    localStorage.setItem('singleProduct', JSON.stringify(product));
     navigate('/SinglePage');
     window.scrollTo(0, 0);
   };

@@ -26,7 +26,15 @@ const SinglePage = () => {
     if (singleProduct) {
       setMainImage(singleProduct.images.mainImage);
     }
-  }, [singleProduct]);
+    if (!singleProduct) {
+      const savedProduct = localStorage.getItem('singleProduct');
+      if (savedProduct) {
+        setSingleProduct(JSON.parse(savedProduct));
+      } else {
+        navigate('/');
+      }
+    }
+  }, [singleProduct, setSingleProduct, navigate]);
 
   const handleCardClick = (product: Product) => {
     setSingleProduct(product);
@@ -78,7 +86,7 @@ const SinglePage = () => {
   };
 
   if (!singleProduct) {
-    return <p>Produto não encontrado.</p>;
+    return <p>Carregando.</p>;
   }
 
   const relatedProducts = products.filter(

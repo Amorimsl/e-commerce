@@ -89,11 +89,7 @@ const Header = () => {
                 Shop
               </Link>
             </li>
-            <li>
-              <Link to="/About" className="block py-2 px-4">
-                About
-              </Link>
-            </li>
+            <li>About</li>
             <li>
               <Link to="/Contact" className="block py-2 px-4">
                 Contact
@@ -129,9 +125,7 @@ const Header = () => {
             </li>
           </ul>
           <ul>
-            <li>
-              <Link to="/About">About</Link>
-            </li>
+            <li>About</li>
           </ul>
           <ul>
             <li>

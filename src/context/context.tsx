@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from 'react';
 
 export type Product = {
@@ -67,6 +68,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         (item) => item.id === product.id
       );
 
+      let updatedCart;
       if (existingProductIndex !== -1) {
         const updatedProducts = [...prevAddToCart];
         updatedProducts[existingProductIndex] = {
@@ -75,10 +77,13 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
             (updatedProducts[existingProductIndex].quantity || 1) +
             (product.quantity || 1),
         };
-        return updatedProducts;
+        updatedCart = updatedProducts;
       } else {
-        return [...prevAddToCart, { ...product }];
+        updatedCart = [...prevAddToCart, { ...product }];
       }
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      return updatedCart;
     });
   };
   const removeItem = (id: string) => {
@@ -107,6 +112,19 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
       return updatedCart;
     });
   };
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      setAddToCard(JSON.parse(savedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('cart');
+    };
+  }, []);
 
   return (
     <ProductsContext.Provider
