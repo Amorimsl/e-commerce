@@ -37,6 +37,14 @@ const Header = () => {
     navigate('/Cart');
     window.scrollTo(0, 0);
   };
+  const CheckoutPage = () => {
+    navigate('/Checkout');
+    window.scrollTo(0, 0);
+  };
+
+  const LoginPage = () => {
+    navigate('/Login');
+  };
 
   return (
     <header className="py-4 px-4 md:px-6 md:py-6 relative md:flex md:justify-around md:items-center">
@@ -137,8 +145,18 @@ const Header = () => {
       <div className="hidden md:flex md:gap-6">
         {!showTooltip && (
           <>
-            <img src={loginSvgUrl} alt="Login" />
-            <img src={shopSvgUrl} alt="Shop" onClick={handleCartClick} />
+            <img
+              src={loginSvgUrl}
+              alt="Login"
+              onClick={LoginPage}
+              className="cursor-pointer"
+            />
+            <img
+              src={shopSvgUrl}
+              alt="Shop"
+              onClick={handleCartClick}
+              className="cursor-pointer"
+            />
           </>
         )}
       </div>
@@ -215,7 +233,10 @@ const Header = () => {
               >
                 Cart
               </button>
-              <button className="border border-black w-[118px] h-[30px] px-6 rounded-3xl text-xs">
+              <button
+                className="border border-black w-[118px] h-[30px] px-6 rounded-3xl text-xs"
+                onClick={CheckoutPage}
+              >
                 Checkout
               </button>
               <button className="border border-black w-[135px] h-[30px] px-6 rounded-3xl text-xs">

@@ -2,8 +2,16 @@ import ImageCards from '../components/bgImageCards/ImageCards';
 import QualityCertificate from '../components/certificate/QualityCertificate';
 import binCart from '../assets/lixeiraCart/lixeira.svg';
 import { useProducts } from '../context/exportContext';
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
   const { addToCard, updateQuantity, removeItem } = useProducts();
+  const navigate = useNavigate();
+
+  const CheckoutPage = () => {
+    navigate('/Checkout');
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div>
       <ImageCards />
@@ -83,7 +91,10 @@ const Cart = () => {
               </div>
             </div>
             <div className="w-full flex items-center justify-center text-xl">
-              <button className="h-auto w-[222px] xl:h-[58.95px] border border-black rounded-xl">
+              <button
+                className="h-auto w-[222px] xl:h-[58.95px] border border-black rounded-xl"
+                onClick={CheckoutPage}
+              >
                 Check Out
               </button>
             </div>

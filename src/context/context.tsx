@@ -27,6 +27,7 @@ export type Product = {
     short: string;
   };
   new?: boolean;
+  quantity: number;
 };
 
 interface AddToCard extends Product {
