@@ -44,6 +44,8 @@ export interface ProductsContextType {
   setAddToCard: Dispatch<SetStateAction<AddToCard[]>>;
   singleProduct: Product | null;
   setSingleProduct: Dispatch<SetStateAction<Product | null>>;
+  updateQuantity: (id: string, amount: number) => void;
+  removeItem: (id: string) => void;
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(
@@ -79,6 +81,32 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
       }
     });
   };
+  const removeItem = (id: string) => {
+    setAddToCard((prevAddToCart) =>
+      prevAddToCart.filter((item) => item.id !== id)
+    );
+  };
+  const updateQuantity = (id: string, amount: number) => {
+    setAddToCard((prevAddToCart) => {
+      const updatedCart = prevAddToCart.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(item.quantity + amount, 0) }
+          : item
+      );
+      const updatedItem = updatedCart.find((item) => item.id === id);
+
+      if (updatedItem && updatedItem.quantity === 0) {
+        const confirmRemove = window.confirm(
+          'A quantidade de item é 0 .Voce tem certeza que deseja excluir??'
+        );
+        if (confirmRemove) {
+          return updatedCart.filter((item) => item.id !== id);
+        }
+      }
+
+      return updatedCart;
+    });
+  };
 
   return (
     <ProductsContext.Provider
@@ -94,6 +122,8 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         setProductsShop,
         singleProduct,
         setSingleProduct,
+        updateQuantity,
+        removeItem,
       }}
     >
       {children}

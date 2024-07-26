@@ -6,11 +6,13 @@ import shopSvgUrl from '../../assets/Shop.svg';
 import { useProducts } from '../../context/exportContext';
 import CloseItem from '../../assets/AddtoCardIcon/CloseItem.svg';
 import CloseTooltip from '../../assets/CloseAddtoCard.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const { addToCard, setAddToCard } = useProducts();
+  const navigate = useNavigate();
 
   const handleCartClick = () => {
     setShowTooltip(!showTooltip);
@@ -30,6 +32,10 @@ const Header = () => {
 
       return updatedAddToCard;
     });
+  };
+  const CartProduct = () => {
+    navigate('/Cart');
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -209,7 +215,10 @@ const Header = () => {
               </span>
             </div>
             <div className="mt-4 flex justify-between">
-              <button className="border border-black w-[87px] h-[30px] px-6 rounded-3xl text-xs">
+              <button
+                className="border border-black w-[87px] h-[30px] px-6 rounded-3xl text-xs"
+                onClick={CartProduct}
+              >
                 Cart
               </button>
               <button className="border border-black w-[118px] h-[30px] px-6 rounded-3xl text-xs">
