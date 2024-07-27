@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoSvgUrl from '../../assets/Logo.svg';
 import loginSvgUrl from '../../assets/Login.svg';
@@ -7,11 +7,60 @@ import { useProducts } from '../../context/exportContext';
 import CloseItem from '../../assets/AddtoCardIcon/CloseItem.svg';
 import CloseTooltip from '../../assets/CloseAddtoCard.svg';
 import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+
+import { User } from 'firebase/auth';
+interface UserDetails {
+  email: string;
+  firstName: string;
+  lastName: string;
+}
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const { addToCard, setAddToCard } = useProducts();
+  const { userDetails, setUserDetails } = useProducts();
+
+  const fetchUserData = async () => {
+    auth.onAuthStateChanged(async (user: User | null) => {
+      if (user) {
+        const docRef = doc(db, 'Users', user.uid);
+        try {
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const data = docSnap.data() as UserDetails;
+            setUserDetails(data);
+          } else {
+            console.log('No such document!');
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      } else {
+        console.log('User is not logged in');
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  async function handleLogout() {
+    try {
+      await auth.signOut();
+      window.location.href = '/Login';
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log('Error logging out:', error.message);
+      } else {
+        console.log('Error logging out: An unknown error occurred');
+      }
+    }
+  }
   const navigate = useNavigate();
 
   const handleCartClick = () => {
@@ -145,12 +194,21 @@ const Header = () => {
       <div className="hidden md:flex md:gap-6">
         {!showTooltip && (
           <>
-            <img
-              src={loginSvgUrl}
-              alt="Login"
-              onClick={LoginPage}
-              className="cursor-pointer"
-            />
+            {userDetails ? (
+              <button
+                onClick={handleLogout}
+                className="text-white bg-custom-text-yellow px-4 py-2 rounded"
+              >
+                Logout
+              </button>
+            ) : (
+              <img
+                src={loginSvgUrl}
+                alt="Login"
+                onClick={LoginPage}
+                className="cursor-pointer"
+              />
+            )}
             <img
               src={shopSvgUrl}
               alt="Shop"

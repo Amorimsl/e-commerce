@@ -33,6 +33,11 @@ export type Product = {
 interface AddToCard extends Product {
   quantity: number;
 }
+interface UserDetails {
+  email: string;
+  firstName: string;
+  lastName: string;
+}
 
 export interface ProductsContextType {
   products: Product[];
@@ -48,6 +53,8 @@ export interface ProductsContextType {
   setSingleProduct: Dispatch<SetStateAction<Product | null>>;
   updateQuantity: (id: string, amount: number) => void;
   removeItem: (id: string) => void;
+  userDetails: UserDetails | null;
+  setUserDetails: Dispatch<SetStateAction<UserDetails | null>>;
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(
@@ -62,6 +69,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   const [visibleProducts, setVisibleProducts] = useState<number>(8);
   const [addToCard, setAddToCard] = useState<AddToCard[]>([]);
   const [singleProduct, setSingleProduct] = useState<Product | null>(null);
+  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
 
   const addToCart = (product: AddToCard) => {
     setAddToCard((prevAddToCart) => {
@@ -143,6 +151,8 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         setSingleProduct,
         updateQuantity,
         removeItem,
+        userDetails,
+        setUserDetails,
       }}
     >
       {children}

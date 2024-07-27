@@ -1,6 +1,31 @@
+import { useState } from 'react';
 import ImageCards from '../components/bgImageCards/ImageCards';
+import { Link } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
+import { toast } from 'react-toastify';
+import { FormEvent } from 'react';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassWord] = useState('');
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success('User logged Successfully', { position: 'top-center' });
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message, { position: 'bottom-center' });
+      } else {
+        toast.error('An unexpected error occurred', {
+          position: 'bottom-center',
+        });
+      }
+    }
+  };
+
   return (
     <>
       <ImageCards />
@@ -9,7 +34,7 @@ const Login = () => {
           <h1 className="text-2xl font-semibold text-center text-gray-700">
             Login
           </h1>
-          <form className="space-y-6 bg-">
+          <form className="space-y-6 bg-" onSubmit={handleSubmit}>
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="email"
@@ -23,6 +48,7 @@ const Login = () => {
                 name="email"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col space-y-1">
@@ -38,6 +64,7 @@ const Login = () => {
                 name="password"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
                 required
+                onChange={(e) => setPassWord(e.target.value)}
               />
             </div>
             <button
@@ -47,6 +74,17 @@ const Login = () => {
               Entrar
             </button>
           </form>
+          <p className="text-center text-gray-600">
+            Não tem uma conta?{' '}
+            <Link to="/register" className="text-indigo-600 hover:underline">
+              Registrar
+            </Link>
+          </p>
+          <p className="text-center">
+            <Link to="/" className="text-indigo-600 hover:underline">
+              Entrar como convidado
+            </Link>
+          </p>
         </section>
       </div>
     </>

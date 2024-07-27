@@ -3,13 +3,28 @@ import QualityCertificate from '../components/certificate/QualityCertificate';
 import binCart from '../assets/lixeiraCart/lixeira.svg';
 import { useProducts } from '../context/exportContext';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { auth } from '../firebase/firebase';
+import { User } from 'firebase/auth';
 const Cart = () => {
   const { addToCard, updateQuantity, removeItem } = useProducts();
   const navigate = useNavigate();
 
-  const CheckoutPage = () => {
-    navigate('/Checkout');
-    window.scrollTo(0, 0);
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  });
+
+  const handleButtonClick = () => {
+    if (user) {
+      navigate('/Checkout');
+      window.scrollTo(0, 0);
+    } else {
+      navigate('/Login');
+      window.scrollTo(0, 0);
+    }
   };
 
   return (
@@ -93,9 +108,9 @@ const Cart = () => {
             <div className="w-full flex items-center justify-center text-xl">
               <button
                 className="h-auto w-[222px] xl:h-[58.95px] border border-black rounded-xl"
-                onClick={CheckoutPage}
+                onClick={handleButtonClick}
               >
-                Check Out
+                {user ? 'Check Out' : 'Login'}
               </button>
             </div>
           </div>

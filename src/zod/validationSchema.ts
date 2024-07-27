@@ -11,6 +11,15 @@ export const formSchema = z.object({
   message: z
     .string()
     .min(6, { message: 'Message must be at least 6 characters long' }),
+  companyName: z.string().optional(),
+  zipCode: z
+    .string()
+    .length(8, { message: 'ZIP code must be exactly 8 characters long' }),
+  country: z.string().min(1, { message: 'Country is required' }),
+  streetAddress: z.string().min(1, { message: 'Street address is required' }),
+  city: z.string().min(1, { message: 'City is required' }),
+  province: z.string().min(1, { message: 'Province is required' }),
+  addOnAddress: z.string().email({ message: 'Invalid email address' }),
 });
 
 export type FormSchema = z.infer<typeof formSchema>;
