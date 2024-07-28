@@ -89,7 +89,7 @@ const Slider: React.FC<SliderProps> = ({ products }) => {
                   <div className="absolute bottom-0 left-0 flex items-end p-4 space-x-0">
                     <div className="bg-custom-bg-slider p-4 shadow-lg text-center max-w-xs">
                       <span className="text-lg mb-2 block">
-                        01 --- Bed Room
+                        01 --- {product.category}
                       </span>
                       <p className="text-3xl mb-4 font-semibold">Inner Peace</p>
                     </div>

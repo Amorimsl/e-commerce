@@ -4,7 +4,6 @@ import Products from '../components/products/Products';
 import { useProducts } from '../context/exportContext';
 import ButtonShowMore from '../components/ButtonShowMore';
 import { useNavigate } from 'react-router-dom';
-//import { Product } from '../context/context';
 import dinningImage from '../assets/ImageCategory/dinning.svg';
 import livingImage from '../assets/ImageCategory/living.svg';
 import bedroomImage from '../assets/ImageCategory/bedroom.svg';
@@ -119,8 +118,8 @@ const Home = () => {
 
       <Slider products={products} />
 
-      <section className="grid grid-cols-8 grid-rows-8 gap-4 mx-8 h-screen">
-        <div className="flex flex-col text-center my-8 col-span-8 gap-6">
+      <section className="grid grid-cols-8 grid-rows-8 gap-4 mx-8 h-screen relative">
+        <div className="flex flex-col text-center my-8 col-span-8 gap-6 z-10">
           <p className="text-gray-500 font-semibold">Share your setup with</p>
           <h1 className="text-4xl font-bold">#FuniroFurniture</h1>
         </div>
@@ -134,7 +133,7 @@ const Home = () => {
               index % 2 === 0
                 ? 'row-span-3 col-span-2'
                 : 'row-span-2 col-span-1'
-            } mt-7`}
+            } mt-7 lg:flex hidden z-10`}
           >
             <img
               src={product.images.mainImage}
@@ -144,6 +143,13 @@ const Home = () => {
             />
           </div>
         ))}
+
+        <div className="absolute top-0 left-0 w-full h-full lg:hidden">
+          <img
+            src={backgroundImage}
+            className="w-full h-full object-cover rounded-lg"
+          />
+        </div>
       </section>
     </>
   );

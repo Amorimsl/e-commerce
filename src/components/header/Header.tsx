@@ -39,8 +39,6 @@ const Header = () => {
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
-      } else {
-        console.log('User is not logged in');
       }
     });
   };

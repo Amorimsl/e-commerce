@@ -87,7 +87,7 @@ const Shop = () => {
         <div className="flex gap-4 flex-col md:flex-row md:items-center">
           <div>
             <span>Show</span>
-            <input type="text" className="w-12 h-12 ml-3" />
+            <input type="text" className="w-12 h-12 ml-3" value={visibleShop} />
           </div>
 
           <div>

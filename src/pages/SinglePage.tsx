@@ -124,7 +124,7 @@ const SinglePage = () => {
       <section className="w-full py-8 flex flex-col md:flex-row gap-8 justify-center">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-8 lg:w-[1241px]">
           <div className="flex flex-col lg:flex-row gap-4 lg:w-[553px] w-full">
-            <div className="flex flex-col gap-4 lg:w-[76px] w-full">
+            <div className="lg:flex flex-col gap-4 lg:w-[76px] w-full hidden">
               {singleProduct.images.gallery.map((image, index) => (
                 <img
                   key={index}
