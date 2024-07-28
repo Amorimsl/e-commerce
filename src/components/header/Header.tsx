@@ -23,6 +23,9 @@ const Header = () => {
   const { addToCard, setAddToCard } = useProducts();
   const { userDetails, setUserDetails } = useProducts();
 
+  const { getCartQuantity } = useProducts();
+  const cartQuantity = getCartQuantity();
+
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async (user: User | null) => {
       if (user) {
@@ -97,7 +100,7 @@ const Header = () => {
     <header className="py-4 px-4 md:px-6 md:py-6 relative md:flex md:justify-around md:items-center">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <img src={logoSvgUrl} alt="Logo SVG" className="w-8 h-8" />
+          <img src={logoSvgUrl} alt="Logo SVG" className="w-10 h-10" />
           <p className="font-bold text-2xl md:text-3xl">Furniro</p>
         </div>
         <div className="md:hidden">
@@ -132,7 +135,7 @@ const Header = () => {
         role="navigation"
         aria-label="Mobile Navigation"
       >
-        <nav className="flex flex-col items-start">
+        <nav className="flex flex-col items-start font-medium">
           <ul className="mb-4">
             <li>
               <Link to="/" className="block py-2 px-4">
@@ -179,7 +182,7 @@ const Header = () => {
 
       <div className="hidden md:flex gap-4">
         <nav
-          className="flex gap-12 font-medium text-base"
+          className="flex gap-12 font-medium text-base "
           role="navigation"
           aria-label="Desktop Navigation"
         >
@@ -203,7 +206,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <div className="hidden md:flex md:gap-6">
+      <div className="hidden md:flex md:gap-6 relative">
         {!showTooltip && (
           <>
             {userDetails ? (
@@ -227,9 +230,15 @@ const Header = () => {
               onClick={handleCartClick}
               className="cursor-pointer"
             />
+            {cartQuantity > 0 && (
+              <div className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                {cartQuantity}
+              </div>
+            )}
           </>
         )}
       </div>
+
       {showTooltip && (
         <>
           <div
@@ -248,7 +257,7 @@ const Header = () => {
             </div>
             <div className="flex-grow overflow-y-auto">
               {addToCard.length === 0 ? (
-                <p>Your cart is empty</p>
+                <p>Carrinho esta vazio</p>
               ) : (
                 addToCard.map((item) => (
                   <div

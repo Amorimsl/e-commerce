@@ -98,10 +98,12 @@ const Cart = () => {
                 <p>Total</p>
                 <span className="text-custom-text-yellow font-medium text-xl">
                   Rp.
-                  {addToCard.reduce(
-                    (total, item) => total + item.normalPrice * item.quantity,
-                    0
-                  )}
+                  {addToCard
+                    .reduce(
+                      (total, item) => total + item.normalPrice * item.quantity,
+                      0
+                    )
+                    .toFixed(2)}
                 </span>
               </div>
             </div>

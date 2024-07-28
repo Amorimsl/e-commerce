@@ -35,6 +35,11 @@ const Home = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleClickShopBuyNow = () => {
+    navigate('/shop');
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       <section
@@ -59,7 +64,10 @@ const Home = () => {
                 Lorem, ipsum dolor sit amet consectetur adipisici elit. Ut elit
                 tellus, luctus nec, ullamcorper mattis.
               </p>
-              <button className="mt-4 bg-custom-text-yellow text-white  w-48 h-16">
+              <button
+                className="mt-4 bg-custom-text-yellow text-white  w-48 h-16"
+                onClick={handleClickShopBuyNow}
+              >
                 BUY NOW
               </button>
             </div>

@@ -1,6 +1,6 @@
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import imageCardsSvg from '../../assets/bgImageCards/ImageCards.svg';
+import Logo from '../../assets/Logo.svg';
 
 const ImageCards = () => {
   const location = useLocation();
@@ -16,7 +16,8 @@ const ImageCards = () => {
       }}
       className="bg-cover bg-center w-full h-96 flex items-center justify-center"
     >
-      <div className="text-center">
+      <div className=" flex flex-col text-center items-center">
+        <img src={Logo} className="w-20 h-20" />
         <h1 className="text-center font-semibold text-5xl">{displayPath}</h1>
         <p className="mt-2">
           <span className="font-semibold">

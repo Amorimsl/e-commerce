@@ -60,6 +60,7 @@ export interface ProductsContextType {
   removeItem: (id: string) => void;
   userDetails: UserDetails | null;
   setUserDetails: Dispatch<SetStateAction<UserDetails | null>>;
+  getCartQuantity: () => number;
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(
@@ -75,6 +76,9 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   const [addToCard, setAddToCard] = useState<AddToCard[]>([]);
   const [singleProduct, setSingleProduct] = useState<Product | null>(null);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
+  const getCartQuantity = () => {
+    return addToCard.reduce((total, item) => total + item.quantity, 0);
+  };
 
   const addToCart = (product: AddToCard) => {
     setAddToCard((prevAddToCart) => {
@@ -158,6 +162,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         removeItem,
         userDetails,
         setUserDetails,
+        getCartQuantity,
       }}
     >
       {children}
