@@ -45,7 +45,6 @@ const SinglePage = () => {
   const handleShowMore = () => {
     setVisibleProducts((prevVisible) => prevVisible + 4);
   };
-
   const handleAddToCart = (
     product: Product,
     quantity: number,
@@ -67,6 +66,7 @@ const SinglePage = () => {
       rating,
       description,
     } = product;
+    const price = product.new ? product.normalPrice : product.salePrice;
     addToCart({
       id,
       title,
@@ -82,6 +82,7 @@ const SinglePage = () => {
       rating,
       description,
       quantity,
+      price,
     });
   };
 
@@ -145,7 +146,10 @@ const SinglePage = () => {
           <div className="flex flex-col gap-4 lg:w-[606px] w-full">
             <h1 className="text-3xl font-medium">{singleProduct.title}</h1>
             <span className="text-color-transparent font-semibold">
-              Rs.{singleProduct.normalPrice}
+              Rs.
+              {singleProduct.new
+                ? singleProduct.normalPrice
+                : singleProduct.salePrice}
             </span>
             <div className="flex items-center gap-4">
               <img src={StarReview} alt="Star Review" />
@@ -174,14 +178,13 @@ const SinglePage = () => {
               <div>
                 <p className="text-color-transparent mb-3">Color</p>
                 <div className="flex gap-2">
-                  {['bg-black', 'bg-purple-950', 'bg-custom-text-yellow'].map(
-                    (color) => (
-                      <div
-                        key={color}
-                        className={`w-[30px] h-[30px] rounded-full ${color}`}
-                      ></div>
-                    )
-                  )}
+                  {singleProduct.colors.map((color, index) => (
+                    <div
+                      key={index}
+                      className="w-[30px] h-[30px] rounded-full"
+                      style={{ backgroundColor: color.hex }}
+                    ></div>
+                  ))}
                 </div>
               </div>
             </div>

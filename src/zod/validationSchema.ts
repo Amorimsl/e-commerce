@@ -4,6 +4,9 @@ export const formSchema = z.object({
   name: z
     .string()
     .min(6, { message: 'Your Name must be at least 6 characters long' }),
+  lastName: z
+    .string()
+    .min(6, { message: 'Last Name must be at least 6 characters long' }),
   email: z.string().email({ message: 'Invalid email address' }),
   subject: z
     .string()

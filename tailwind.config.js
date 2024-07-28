@@ -14,6 +14,8 @@ export default {
         'custom-card-bg': ' rgba(244, 245, 247, 1)',
         'custom-new-bg': 'rgba(46, 193, 172, 1)',
         'custom-bg-slider': 'rgba(255, 255, 255, 0.72)',
+        'custom-50%-color': ' rgba(233, 113, 113, 1)',
+        'custom-text-transparent': 'rgba(176, 176, 176, 1)',
       },
     },
   },

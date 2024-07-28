@@ -5,6 +5,14 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 import { toast } from 'react-toastify';
 import { FormEvent } from 'react';
+import { z } from 'zod';
+
+const loginSchema = z.object({
+  email: z.string().email({ message: 'Invalid email address' }),
+  password: z
+    .string()
+    .min(6, { message: 'Password must be at least 6 characters long' }),
+});
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +20,15 @@ const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const result = loginSchema.safeParse({ email, password });
+    if (!result.success) {
+      toast.error(result.error.errors.map((err) => err.message).join(', '), {
+        position: 'bottom-center',
+      });
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success('User logged Successfully', { position: 'top-center' });
@@ -29,12 +46,12 @@ const Login = () => {
   return (
     <>
       <ImageCards />
-      <div className="flex flex-col items-center justify-center  py-16">
-        <section className="w-full max-w-md p-8 space-y-6  rounded-lg shadow-md bg-custom-bg">
+      <div className="flex flex-col items-center justify-center py-16">
+        <section className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-custom-bg">
           <h1 className="text-2xl font-semibold text-center text-gray-700">
             Login
           </h1>
-          <form className="space-y-6 bg-" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="email"
@@ -47,7 +64,6 @@ const Login = () => {
                 id="email"
                 name="email"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
-                required
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -63,7 +79,6 @@ const Login = () => {
                 id="password"
                 name="password"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
-                required
                 onChange={(e) => setPassWord(e.target.value)}
               />
             </div>

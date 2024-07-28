@@ -6,6 +6,10 @@ import React, {
   SetStateAction,
   useEffect,
 } from 'react';
+type Color = {
+  name: string;
+  hex: string;
+};
 
 export type Product = {
   id: string;
@@ -20,7 +24,7 @@ export type Product = {
   tags: string[] | string;
   salePrice: number;
   discountPercentage?: number;
-  colors: string[];
+  colors: Color[];
   sizes: string[];
   rating: number;
   description: {
@@ -28,6 +32,7 @@ export type Product = {
   };
   new?: boolean;
   quantity: number;
+  price: number;
 };
 
 interface AddToCard extends Product {
@@ -43,7 +48,7 @@ export interface ProductsContextType {
   products: Product[];
   setProducts: Dispatch<SetStateAction<Product[]>>;
   productsShop: Product[];
-  setProductsShop: Dispatch<SetStateAction<Product[]>>;
+  setProductsShop: (products: Product[]) => void;
   visibleProducts: number;
   setVisibleProducts: Dispatch<SetStateAction<number>>;
   addToCart: (product: AddToCard) => void;

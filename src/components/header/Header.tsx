@@ -146,7 +146,7 @@ const Header = () => {
                 Shop
               </Link>
             </li>
-            <li>About</li>
+            <li className="block py-2 px-4">About</li>
             <li>
               <Link to="/Contact" className="block py-2 px-4">
                 Contact
@@ -154,7 +154,21 @@ const Header = () => {
             </li>
           </ul>
           <div className="flex gap-4">
-            <img src={loginSvgUrl} alt="Login" className="w-6 h-6" />
+            {userDetails ? (
+              <button
+                onClick={handleLogout}
+                className="text-white bg-custom-text-yellow px-4 py-2 rounded w-20 h-8 items-center text-center flex"
+              >
+                Logout
+              </button>
+            ) : (
+              <img
+                src={loginSvgUrl}
+                alt="Login"
+                onClick={LoginPage}
+                className="cursor-pointer w-6 h-6"
+              />
+            )}
             <img
               src={shopSvgUrl}
               alt="Shop"
@@ -255,7 +269,7 @@ const Header = () => {
                           {item.quantity} <span>X</span>
                         </p>
                         <p className="text-custom-text-yellow font-medium">
-                          RS {item.normalPrice}
+                          RS {item.price}
                         </p>
                       </div>
                     </div>

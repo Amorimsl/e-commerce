@@ -33,6 +33,9 @@ const GridProduct: React.FC<{
       rating,
       description,
     } = product;
+
+    const price = product.new ? product.normalPrice : product.salePrice;
+
     addToCart({
       id,
       title,
@@ -47,6 +50,7 @@ const GridProduct: React.FC<{
       sizes,
       rating,
       description,
+      price,
       quantity: 1,
     });
   };
@@ -72,10 +76,20 @@ const GridProduct: React.FC<{
               alt={product.title}
               className="w-full h-[301px] object-cover rounded-t-lg"
             />
-            {product.new && (
+            {product.new ? (
               <div className="absolute top-3 right-3">
                 <span className="bg-custom-new-bg text-white w-8 h-8 flex items-center justify-center rounded-full text-xs font-semibold">
                   New
+                </span>
+              </div>
+            ) : (
+              <div className="absolute top-3 right-3">
+                <span className="bg-custom-50%-color text-white w-9 h-9 flex items-center justify-center rounded-full text-xs font-semibold ">
+                  -
+                  {product.discountPercentage !== undefined
+                    ? Math.round(product.discountPercentage * 100)
+                    : 0}
+                  %
                 </span>
               </div>
             )}
@@ -111,8 +125,23 @@ const GridProduct: React.FC<{
                 {product.description.short}
               </p>
             </div>
-            <div className="p-2 font-bold rounded-lg">
-              <p>RS {product.normalPrice}</p>
+            <div className="p-2 font-bold rounded-lg flex justify-between ">
+              {product.new ? (
+                <p className="font-bold text-gray-800">
+                  RS {product.normalPrice}
+                </p>
+              ) : (
+                <>
+                  <p className="font-bold text-gray-800">
+                    RS {product.salePrice}
+                  </p>
+                  {product.salePrice && (
+                    <p className="font-bold line-through text-custom-text-transparent">
+                      RS {product.normalPrice}
+                    </p>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

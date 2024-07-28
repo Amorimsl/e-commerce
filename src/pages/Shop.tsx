@@ -4,16 +4,18 @@ import GridProduct from '../components/gridProduct/gridProduct';
 import { useProducts } from '../context/exportContext';
 import { useEffect, useState } from 'react';
 import Filter from '../assets/filters/filter.svg';
-import Menu from '../assets/filters/menu.svg';
+//import Menu from '../assets/filters/menu.svg';
 import Default from '../assets/filters/default.svg';
 import ButtonGroup from '../components/ButtonGroup';
 import { useParams } from 'react-router-dom';
 import { Product } from '../context/context';
+import ToolTipFilter from '../components/TooltipFilter/ToolTipFilter';
 
 const Shop = () => {
   const { visibleProducts, setVisibleProducts, productsShop, setProductsShop } =
     useProducts();
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('Todos');
   const { tag } = useParams();
 
   const visibleShop = 16;
@@ -24,11 +26,14 @@ const Shop = () => {
   const startIndex = (currentPage - 1) * visibleProducts;
   const endIndex = startIndex + visibleProducts;
   const currentProducts = productsShop.slice(startIndex, endIndex);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:3000/products');
         const data: Product[] = await response.json();
+        setAllProducts(data);
 
         if (tag) {
           const filtered = data.filter((product) => product.tags.includes(tag));
@@ -43,6 +48,26 @@ const Shop = () => {
 
     fetchProducts();
   }, [tag, setProductsShop]);
+
+  useEffect(() => {
+    if (selectedCategory !== 'Todos') {
+      const filteredProducts = allProducts.filter(
+        (product) => product.category === selectedCategory
+      );
+      setProductsShop(filteredProducts);
+    } else if (tag) {
+      const filteredByTag = allProducts.filter((product) =>
+        product.tags.includes(tag)
+      );
+      setProductsShop(filteredByTag);
+    } else {
+      setProductsShop(allProducts);
+    }
+  }, [selectedCategory, allProducts, tag, setProductsShop]);
+
+  useEffect(() => {
+    setVisibleProducts(visibleShop);
+  }, [setVisibleProducts, visibleShop]);
   return (
     <div>
       <ImageCards />
@@ -51,11 +76,13 @@ const Shop = () => {
         <div className="flex gap-4 items-center">
           <img src={Filter} alt="filter" className="w-5 h-5" />
           <span className="text-black font-medium text-lg">Filter</span>
-          <img src={Menu} className="w-5 h-5" />
+          <ToolTipFilter onSelectCategory={setSelectedCategory} />
           <div className="border-r border-gray-600 w-12 ">
             <img src={Default} className="w-5 h-5" />
           </div>
-          <span>Showing 1-16 of 64 results</span>
+          <span>
+            Showing 1-{visibleShop} of {productsShop.length} results
+          </span>
         </div>
         <div className="flex gap-4 flex-col md:flex-row md:items-center">
           <div>

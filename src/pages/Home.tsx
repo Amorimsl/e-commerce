@@ -4,7 +4,7 @@ import Products from '../components/products/Products';
 import { useProducts } from '../context/exportContext';
 import ButtonShowMore from '../components/ButtonShowMore';
 import { useNavigate } from 'react-router-dom';
-import { Product } from '../context/context';
+//import { Product } from '../context/context';
 import dinningImage from '../assets/ImageCategory/dinning.svg';
 import livingImage from '../assets/ImageCategory/living.svg';
 import bedroomImage from '../assets/ImageCategory/bedroom.svg';
@@ -32,10 +32,6 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleClick = (tag: string) => {
-    const filtered: Product[] = products.filter((product) =>
-      product.tags.includes(tag)
-    );
-    setProducts(filtered);
     navigate(`/shop/${tag}`);
     window.scrollTo(0, 0);
   };
