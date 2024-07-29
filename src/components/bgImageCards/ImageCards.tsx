@@ -1,7 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 
-import Logo from '../../assets/Logo.svg';
-
 const ImageCards = () => {
   const location = useLocation();
   const path = location.pathname.slice(1);
