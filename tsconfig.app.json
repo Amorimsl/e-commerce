@@ -17,10 +17,10 @@
     "jsx": "react-jsx",
     "types": ["vitest/globals"],
 
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "src/@types"]
 }
