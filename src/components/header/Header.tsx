@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+
 import { useProducts } from '../../context/exportContext';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
-import { User } from 'firebase/auth';
 interface UserDetails {
   email: string;
   firstName: string;
@@ -21,8 +21,8 @@ const Header = () => {
   const { getCartQuantity } = useProducts();
   const cartQuantity = getCartQuantity();
 
-  const fetchUserData = async () => {
-    auth.onAuthStateChanged(async (user: User | null) => {
+  const fetchUserData = useCallback(async () => {
+    auth.onAuthStateChanged(async (user) => {
       if (user) {
         const docRef = doc(db, 'Users', user.uid);
         try {
@@ -39,11 +39,11 @@ const Header = () => {
         }
       }
     });
-  };
+  }, [setUserDetails]);
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [fetchUserData]);
 
   async function handleLogout() {
     try {
