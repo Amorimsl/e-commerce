@@ -18,4 +18,5 @@ export default defineConfig({
       include: ['src/**/*.ts', 'src/**/*.tsx'],
     },
   },
+  build: { chunkSizeWarningLimit: 1600 },
 });
