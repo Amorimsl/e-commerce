@@ -4,9 +4,6 @@ import Products from '../components/products/Products';
 import { useProducts } from '../context/exportContext';
 import ButtonShowMore from '../components/ButtonShowMore';
 import { useNavigate } from 'react-router-dom';
-import dinningImage from '../assets/ImageCategory/dinning.svg';
-import livingImage from '../assets/ImageCategory/living.svg';
-import bedroomImage from '../assets/ImageCategory/bedroom.svg';
 
 const Home = () => {
   const { products, setProducts } = useProducts();
@@ -87,7 +84,7 @@ const Home = () => {
             onClick={() => handleClick('Cozinha')}
           >
             <img
-              src={dinningImage}
+              src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/ImageCategory/dinning.svg"
               alt="dinning"
               className="w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg  h-96  mb-2 object-cover"
             />
@@ -98,7 +95,7 @@ const Home = () => {
             onClick={() => handleClick('Sala')}
           >
             <img
-              src={livingImage}
+              src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/ImageCategory/living.svg"
               alt={'living'}
               className="w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg  h-96  mb-2 object-cover"
             />
@@ -109,7 +106,7 @@ const Home = () => {
             onClick={() => handleClick('Quarto')}
           >
             <img
-              src={bedroomImage}
+              src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/ImageCategory/bedroom.svg"
               alt={'bedroom'}
               className="w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg h-96 mb-2 object-cover"
             />

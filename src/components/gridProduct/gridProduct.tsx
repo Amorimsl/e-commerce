@@ -1,8 +1,5 @@
 import React from 'react';
 import { useProducts } from '../../context/exportContext';
-import Share from '../../assets/Share.svg';
-import Compare from '../../assets/Compare.svg';
-import heart from '../../assets/Heart.svg';
 import { Product } from '../../context/context';
 import { useNavigate } from 'react-router-dom';
 
@@ -103,15 +100,27 @@ const GridProduct: React.FC<{
               <div className="flex justify-between text-white mt-2 gap-2">
                 <div className="flex space-x-4">
                   <div className="flex items-center space-x-2">
-                    <img src={Share} alt="Share Icon" className="w-4 h-4" />
+                    <img
+                      src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Share.svg"
+                      alt="Share Icon"
+                      className="w-4 h-4"
+                    />
                     <span>Share</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <img src={Compare} alt="Compare Icon" className="w-4 h-4" />
+                    <img
+                      src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Compare.svg"
+                      alt="Compare Icon"
+                      className="w-4 h-4"
+                    />
                     <span>Compare</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <img src={heart} alt="Heart Icon" className="w-4 h-4" />
+                    <img
+                      src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Heart.svg"
+                      alt="Heart Icon"
+                      className="w-4 h-4"
+                    />
                     <span>Link</span>
                   </div>
                 </div>

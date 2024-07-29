@@ -1,6 +1,5 @@
 import ImageCards from '../components/bgImageCards/ImageCards';
 import QualityCertificate from '../components/certificate/QualityCertificate';
-import binCart from '../assets/lixeiraCart/lixeira.svg';
 import { useProducts } from '../context/exportContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -32,8 +31,8 @@ const Cart = () => {
       <ImageCards />
 
       <section className="w-full h-auto xl:h-[525px] flex items-center justify-center p-4 xl:p-0">
-        <div className="w-full h-auto xl:w-[1240px] xl:h-[390px]  flex flex-col xl:flex-row xl:justify-between gap-4 xl:gap-0">
-          <div className="w-full h-auto xl:w-[817px] xl:h-[215px]  p-4 xl:p-0">
+        <div className="w-full h-auto xl:w-[1240px] xl:h-[390px]  flex flex-col xl:flex-row xl:justify-between gap-4 xl:gap-0 overflow-y-auto">
+          <div className="w-full h-auto xl:w-[817px] xl:h-[215px]  p-4 xl:p-0 ">
             <div className="w-full h-auto xl:h-[55px] bg-custom-bg">
               <div className="flex items-center justify-around xl:justify-between">
                 <div>Product</div>
@@ -71,7 +70,7 @@ const Cart = () => {
                   Rp.{item.normalPrice * item.quantity}
                 </span>
                 <img
-                  src={binCart}
+                  src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/lixeiraCart/lixeira.svg"
                   alt="Remove item"
                   className="cursor-pointer"
                   onClick={() => removeItem(item.id)}

@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoSvgUrl from '../../assets/Logo.svg';
-import loginSvgUrl from '../../assets/Login.svg';
-import shopSvgUrl from '../../assets/Shop.svg';
 import { useProducts } from '../../context/exportContext';
-import CloseItem from '../../assets/AddtoCardIcon/CloseItem.svg';
-import CloseTooltip from '../../assets/CloseAddtoCard.svg';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
@@ -100,7 +95,11 @@ const Header = () => {
     <header className="py-4 px-4 md:px-6 md:py-6 relative md:flex md:justify-around md:items-center">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <img src={logoSvgUrl} alt="Logo SVG" className="w-10 h-10" />
+          <img
+            src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Logo.svg"
+            alt="Logo SVG"
+            className="w-10 h-10"
+          />
           <p className="font-bold text-2xl md:text-3xl">Furniro</p>
         </div>
         <div className="md:hidden">
@@ -164,14 +163,14 @@ const Header = () => {
               </button>
             ) : (
               <img
-                src={loginSvgUrl}
+                src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Login.svg"
                 alt="Login"
                 onClick={LoginPage}
                 className="cursor-pointer w-6 h-6"
               />
             )}
             <img
-              src={shopSvgUrl}
+              src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Shop.svg"
               alt="Shop"
               className="w-6 h-6"
               onClick={handleCartClick}
@@ -218,14 +217,14 @@ const Header = () => {
               </button>
             ) : (
               <img
-                src={loginSvgUrl}
+                src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Login.svg"
                 alt="Login"
                 onClick={LoginPage}
                 className="cursor-pointer"
               />
             )}
             <img
-              src={shopSvgUrl}
+              src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Shop.svg"
               alt="Shop"
               onClick={handleCartClick}
               className="cursor-pointer"
@@ -252,7 +251,7 @@ const Header = () => {
                 onClick={handleCloseTooltip}
                 className="text-gray-600 hover:text-gray-800 focus:outline-none"
               >
-                <img src={CloseTooltip} />
+                <img src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/CloseAddtoCard.svg" />
               </button>
             </div>
             <div className="flex-grow overflow-y-auto">
@@ -285,7 +284,7 @@ const Header = () => {
                       className="ml-4 text-gray-600 hover:text-gray-800 focus:outline-none"
                     >
                       <img
-                        src={CloseItem}
+                        src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/AddtoCardIcon/CloseItem.svg"
                         alt="Close Icon"
                         className="w-5 h-5"
                       />

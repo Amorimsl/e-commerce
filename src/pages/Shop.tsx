@@ -3,9 +3,6 @@ import QualityCertificate from '../components/certificate/QualityCertificate';
 import GridProduct from '../components/gridProduct/gridProduct';
 import { useProducts } from '../context/exportContext';
 import { useEffect, useState } from 'react';
-import Filter from '../assets/filters/filter.svg';
-//import Menu from '../assets/filters/menu.svg';
-import Default from '../assets/filters/default.svg';
 import ButtonGroup from '../components/ButtonGroup';
 import { useParams } from 'react-router-dom';
 import { Product } from '../context/context';
@@ -74,11 +71,18 @@ const Shop = () => {
 
       <section className="py-12 bg-custom-bg flex md:justify-around justify-start flex-col md:flex-row ">
         <div className="flex gap-4 items-center">
-          <img src={Filter} alt="filter" className="w-5 h-5" />
+          <img
+            src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/filters/filter.svg"
+            alt="filter"
+            className="w-5 h-5"
+          />
           <span className="text-black font-medium text-lg">Filter</span>
           <ToolTipFilter onSelectCategory={setSelectedCategory} />
           <div className="border-r border-gray-600 w-12 ">
-            <img src={Default} className="w-5 h-5" />
+            <img
+              src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/filters/default.svg"
+              className="w-5 h-5"
+            />
           </div>
           <span>
             Showing 1-{visibleShop} of {productsShop.length} results

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import ArrowSlider from '../../assets/arraySlider.svg';
 import { Product } from '../../context/context';
 
 interface SliderProps {
@@ -94,7 +93,11 @@ const Slider: React.FC<SliderProps> = ({ products }) => {
                       <p className="text-3xl mb-4 font-semibold">Inner Peace</p>
                     </div>
                     <button className="bg-custom-text-yellow text-white py-2 px-4 ml-4 h-12 flex items-center justify-center">
-                      <img src={ArrowSlider} alt="Arrow" className="w-6 h-6" />
+                      <img
+                        src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/arraySlider.svg"
+                        alt="Arrow"
+                        className="w-6 h-6"
+                      />
                     </button>
                   </div>
                 )}

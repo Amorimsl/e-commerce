@@ -15,7 +15,7 @@ Este é um aplicativo criado utilizando React e Tailwind CSS. Ele também usa JS
 
 ## OBSERVAÇÃO
 
-- Toda as imagem dos produtos entao armazenados com bucket s3 da aws.
+- Toda as imagem e icons do site estão armazenados no bucket s3 da aws.
 
 ## Instalação
 

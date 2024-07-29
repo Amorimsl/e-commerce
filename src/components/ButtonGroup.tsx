@@ -1,4 +1,16 @@
-const ButtonGroup = ({ currentPage, setCurrentPage, totalPages }) => {
+import React from 'react';
+
+interface ButtonGroupProps {
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+  totalPages: number;
+}
+
+const ButtonGroup: React.FC<ButtonGroupProps> = ({
+  currentPage,
+  setCurrentPage,
+  totalPages,
+}) => {
   return (
     <div className="flex gap-8 mt-2">
       <button
@@ -29,12 +41,12 @@ const ButtonGroup = ({ currentPage, setCurrentPage, totalPages }) => {
         3
       </button>
       <button
-        className={`w-24 h-12 bg-custom-bg rounded-lg flex items-center justify-center font-semibold  ${
+        className={`w-24 h-12 bg-custom-bg rounded-lg flex items-center justify-center font-semibold ${
           currentPage >= totalPages
             ? 'bg-custom-text-yellow text-white'
             : 'bg-custom-bg'
         }`}
-        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
         disabled={currentPage >= totalPages}
       >
         Next
@@ -42,5 +54,4 @@ const ButtonGroup = ({ currentPage, setCurrentPage, totalPages }) => {
     </div>
   );
 };
-
 export default ButtonGroup;

@@ -1,8 +1,4 @@
 import { Link } from 'react-router-dom';
-import FacebookSvg from '../../assets/Facebook.svg';
-import InstagramSvg from '../../assets/Instagram.svg';
-import TwitterSvg from '../../assets/Twitter.svg';
-import LinkedinSvg from '../../assets/Linkedin.svg';
 import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -48,28 +44,44 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={FacebookSvg} alt="Facebook" className="w-5 h-5" />
+                <img
+                  src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Facebook.svg"
+                  alt="Facebook"
+                  className="w-5 h-5"
+                />
               </a>
               <a
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={InstagramSvg} alt="Instagram" className="w-5 h-5" />
+                <img
+                  src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Instagram.svg"
+                  alt="Instagram"
+                  className="w-5 h-5"
+                />
               </a>
               <a
                 href="https://www.twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={TwitterSvg} alt="Twitter" className="w-5 h-5" />
+                <img
+                  src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Twitter.svg"
+                  alt="Twitter"
+                  className="w-5 h-5"
+                />
               </a>
               <a
                 href="https://www.linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={LinkedinSvg} alt="LinkedIn" className="w-5 h-5" />
+                <img
+                  src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Linkedin.svg"
+                  alt="LinkedIn"
+                  className="w-5 h-5"
+                />
               </a>
             </div>
           </div>

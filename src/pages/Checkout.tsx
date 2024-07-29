@@ -119,7 +119,7 @@ const Checkout = () => {
                       <input
                         type="text"
                         value={userDetails.firstName || ''}
-                        className="md:w-[211px] h-[75px] w-full border border-color-transparent rounded-xl"
+                        className="md:w-[211px] h-[75px] w-full border border-color-transparent rounded-xl px-2"
                         readOnly
                       />
                     </div>
@@ -128,7 +128,7 @@ const Checkout = () => {
                       <input
                         type="text"
                         value={userDetails.lastName || ''}
-                        className="md:w-[211px] w-full h-[75px] border border-color-transparent rounded-xl"
+                        className="md:w-[211px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                         readOnly
                       />
                     </div>
@@ -143,7 +143,7 @@ const Checkout = () => {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleChange}
-                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                 />
                 {errors.companyName && (
                   <p className="text-red-500">{errors.companyName}</p>
@@ -156,7 +156,7 @@ const Checkout = () => {
                   name="zipCode"
                   value={formData.zipCode}
                   onChange={handleZipCodeChange}
-                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                 />
                 {errors.zipCode && (
                   <p className="text-red-500">{errors.zipCode}</p>
@@ -169,7 +169,7 @@ const Checkout = () => {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                 />
                 {errors.country && (
                   <p className="text-red-500">{errors.country}</p>
@@ -182,7 +182,7 @@ const Checkout = () => {
                   name="streetAddress"
                   value={formData.streetAddress}
                   onChange={handleChange}
-                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                 />
                 {errors.streetAddress && (
                   <p className="text-red-500">{errors.streetAddress}</p>
@@ -195,7 +195,7 @@ const Checkout = () => {
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                 />
                 {errors.city && <p className="text-red-500">{errors.city}</p>}
               </div>
@@ -206,7 +206,7 @@ const Checkout = () => {
                   name="province"
                   value={formData.province}
                   onChange={handleChange}
-                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                 />
                 {errors.province && (
                   <p className="text-red-500">{errors.province}</p>
@@ -219,7 +219,7 @@ const Checkout = () => {
                   name="addOnAddress"
                   value={formData.addOnAddress}
                   onChange={handleChange}
-                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                  className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                 />
                 {errors.addOnAddress && (
                   <p className="text-red-500">{errors.addOnAddress}</p>
@@ -232,7 +232,7 @@ const Checkout = () => {
                     type="text"
                     name="email"
                     value={userDetails.email}
-                    className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl"
+                    className="md:w-[453px] w-full h-[75px] border border-color-transparent rounded-xl px-2"
                     readOnly
                   />
                 </div>

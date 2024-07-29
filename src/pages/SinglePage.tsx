@@ -1,13 +1,4 @@
-import FirstSofaDescription from '../assets/DescriptionSinglePage/SofaDescription.svg';
-import SecondSofaDescription from '../assets/DescriptionSinglePage/SecondSofa.svg';
-import StarReview from '../assets/starts.svg';
-import Facebook from '../assets/SingleProductShare/facebook.svg';
-import Linkedin from '../assets/SingleProductShare/linkedin.svg';
-import Twitter from '../assets/SingleProductShare/twitter.svg';
 import { useProducts } from '../context/exportContext';
-import Share from '../assets/Share.svg';
-import Compare from '../assets/Compare.svg';
-import heart from '../assets/Heart.svg';
 import { Product } from '../context/context';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -152,7 +143,10 @@ const SinglePage = () => {
                 : singleProduct.salePrice}
             </span>
             <div className="flex items-center gap-4">
-              <img src={StarReview} alt="Star Review" />
+              <img
+                src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/starts.svg"
+                alt="Star Review"
+              />
               <div className="border h-8 border-r"></div>
               <span className="text-color-transparent">5 Customer Reviews</span>
             </div>
@@ -231,9 +225,18 @@ const SinglePage = () => {
                   label: 'Share',
                   value: (
                     <div className="flex gap-4">
-                      <img src={Facebook} alt="Facebook" />
-                      <img src={Linkedin} alt="Linkedin" />
-                      <img src={Twitter} alt="Twitter" />
+                      <img
+                        src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/SingleProductShare/facebook.svg"
+                        alt="Facebook"
+                      />
+                      <img
+                        src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/SingleProductShare/linkedin.svg"
+                        alt="Linkedin"
+                      />
+                      <img
+                        src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/SingleProductShare/twitter.svg"
+                        alt="Twitter"
+                      />
                     </div>
                   ),
                 },
@@ -275,10 +278,10 @@ const SinglePage = () => {
 
         <div className="lg:w-[1239px] w-full h-[348px] flex flex-row gap-4 items-center justify-center">
           <div className="w-[605] h-[348px] ">
-            <img src={FirstSofaDescription} />
+            <img src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/DescriptionSinglePage/SofaDescription.svg" />
           </div>
           <div className="w-[605] h-[348px] lg:flex hidden">
-            <img src={SecondSofaDescription} />
+            <img src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/DescriptionSinglePage/SecondSofa.svg" />
           </div>
         </div>
       </section>
@@ -318,7 +321,7 @@ const SinglePage = () => {
                       <div className="flex space-x-4">
                         <div className="flex items-center space-x-2">
                           <img
-                            src={Share}
+                            src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Share.svg"
                             alt="Share Icon"
                             className="w-4 h-4"
                           />
@@ -326,7 +329,7 @@ const SinglePage = () => {
                         </div>
                         <div className="flex items-center space-x-2">
                           <img
-                            src={Compare}
+                            src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Compare.svg"
                             alt="Compare Icon"
                             className="w-4 h-4"
                           />
@@ -334,7 +337,7 @@ const SinglePage = () => {
                         </div>
                         <div className="flex items-center space-x-2">
                           <img
-                            src={heart}
+                            src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Heart.svg"
                             alt="Heart Icon"
                             className="w-4 h-4"
                           />

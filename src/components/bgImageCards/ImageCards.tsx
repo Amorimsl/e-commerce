@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import imageCardsSvg from '../../assets/bgImageCards/ImageCards.svg';
+
 import Logo from '../../assets/Logo.svg';
 
 const ImageCards = () => {
@@ -12,12 +12,16 @@ const ImageCards = () => {
   return (
     <div
       style={{
-        backgroundImage: `url(${imageCardsSvg})`,
+        backgroundImage:
+          'url(https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/bgImageCards/ImageCards.svg)',
       }}
       className="bg-cover bg-center w-full h-96 flex items-center justify-center"
     >
       <div className=" flex flex-col text-center items-center">
-        <img src={Logo} className="w-20 h-20" />
+        <img
+          src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Logo.svg"
+          className="w-20 h-20"
+        />
         <h1 className="text-center font-semibold text-5xl">{displayPath}</h1>
         <p className="mt-2">
           <span className="font-semibold">

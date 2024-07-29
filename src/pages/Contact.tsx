@@ -1,8 +1,6 @@
 import ImageCards from '../components/bgImageCards/ImageCards';
 import QualityCertificate from '../components/certificate/QualityCertificate';
-import LocationIcon from '../assets/Contact/location.svg';
-import PhoneIcon from '../assets/Contact/phone.svg';
-import TimeIcon from '../assets/Contact/time.svg';
+
 import { formSchema, FormSchema } from '../zod/validationSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -35,7 +33,10 @@ const Contact = () => {
         <div className=" h-auto lg:h-[923px] lg:w-[1058px] w-full  flex justify-between">
           <div className="lg:w-[393px] w-full lg:h-[537px] h-auto bg-white flex flex-col gap-6 items-center justify-center">
             <div className="flex  gap-4">
-              <img src={LocationIcon} className="lg:pb-16" />
+              <img
+                src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Contact/location.svg"
+                className="lg:pb-16"
+              />
               <div>
                 <h1 className="text-xl font-medium">Address</h1>
                 <p className="lg:w-[212px] w-full lg:h-[72px] h-auto">
@@ -44,7 +45,10 @@ const Contact = () => {
               </div>
             </div>
             <div className="flex  gap-4">
-              <img src={PhoneIcon} className="lg:pb-16" />
+              <img
+                src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Contact/phone.svg"
+                className="lg:pb-16"
+              />
               <div>
                 <h1 className="text-xl font-medium">Phone</h1>
                 <p className="lg:w-[212px] w-full lg:h-[72px] h-auto">
@@ -53,7 +57,10 @@ const Contact = () => {
               </div>
             </div>
             <div className="flex  gap-4">
-              <img src={TimeIcon} className="lg:pb-16" />
+              <img
+                src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Contact/time.svg"
+                className="lg:pb-16"
+              />
               <div>
                 <h1 className="text-xl font-medium">Working Time</h1>
                 <p className="lg:w-[212px] w-full lg:h-[72px] h-auto">
@@ -77,7 +84,7 @@ const Contact = () => {
                 <input
                   type="text"
                   {...register('name')}
-                  className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg"
+                  className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg px-2"
                   placeholder="Abc"
                 />
               </div>
@@ -91,7 +98,7 @@ const Contact = () => {
                 <input
                   type="text"
                   {...register('email')}
-                  className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg"
+                  className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg px-2"
                   placeholder="Abc@def.com"
                 />
               </div>
@@ -107,7 +114,7 @@ const Contact = () => {
                 <input
                   type="text"
                   {...register('subject')}
-                  className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg"
+                  className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg px-2"
                   placeholder="This is an optional"
                 />
               </div>
@@ -123,7 +130,7 @@ const Contact = () => {
                 <input
                   type="text"
                   {...register('message')}
-                  className="md:w-[527px] w-full md:h-[120px] h-auto border border-color-transparent rounded-lg"
+                  className="md:w-[527px] w-full md:h-[120px] h-auto border border-color-transparent rounded-lg px-2"
                   placeholder="Hi! I'd like to ask about"
                 />
               </div>
