@@ -87,10 +87,9 @@ const Cart = () => {
                 <p>Subtotal</p>
                 <span>
                   Rp.
-                  {addToCard.reduce(
-                    (total, item) => total + item.normalPrice,
-                    0
-                  )}
+                  {addToCard
+                    .reduce((total, item) => total + item.normalPrice, 0)
+                    .toFixed(2)}
                 </span>
               </div>
               <div className="flex flex-row items-center justify-between w-full px-4 xl:px-16">

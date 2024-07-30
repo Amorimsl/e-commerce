@@ -101,14 +101,14 @@ const Checkout = () => {
   return (
     <div>
       <ImageCards />
-      <section className="w-full h-[1829px]  flex items-center justify-center">
+      <section className="w-full h-[1829px] flex items-center justify-center">
         <div className="xl:w-[1242px] w-full lg:h-[1714px] h-full bg-white flex justify-between lg:flex-row flex-col gap-2">
-          <div className="h-full md:w-[608px] w-full  flex flex-col gap-6 ">
-            <h1 className="text-4xl  font-semibold text-center">
+          <div className="h-full md:w-[608px] w-full flex flex-col gap-6">
+            <h1 className="text-4xl font-semibold text-center">
               Billing details
             </h1>
             <form
-              className="flex justify-center flex-col items-center gap-6 "
+              className="flex justify-center flex-col items-center gap-6"
               onSubmit={handleSubmit}
             >
               <div className="flex gap-6">
@@ -135,7 +135,6 @@ const Checkout = () => {
                   </>
                 )}
               </div>
-
               <div className="flex flex-col">
                 <label>Company Name (Optional)</label>
                 <input
@@ -239,9 +238,8 @@ const Checkout = () => {
               )}
             </form>
           </div>
-
-          <div className="lg:w-[608px] w-full h-[789px] flex flex-col items-center justify-center ">
-            <div className="lg:w-[533px] w-full h-[616px] flex justify-between   pb-4 flex-col ">
+          <div className="lg:w-[608px] w-full h-auto flex flex-col items-center justify-center">
+            <div className="lg:w-[533px] w-full h-auto flex flex-col justify-between pb-4">
               <div className="flex justify-between">
                 <div className="flex flex-col gap-6">
                   <p className="text-2xl">Product</p>
@@ -265,57 +263,54 @@ const Checkout = () => {
                   </p>
                 </div>
               </div>
-              <div className="lg:w-[528px] h-[107px] flex">
-                <div className="flex flex-col">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      id="bankTransfer"
-                      checked={selectedOption === 'bankTransfer'}
-                      onChange={() => handleOptionChange('bankTransfer')}
-                      className="hidden peer"
-                    />
-                    <label
-                      htmlFor="bankTransfer"
-                      className={`flex items-center gap-2 cursor-pointer peer-checked:text-black`}
-                    >
-                      <span
-                        className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${
-                          selectedOption === 'bankTransfer'
-                            ? 'border-black'
-                            : 'border-gray-400'
-                        }`}
-                      >
-                        {selectedOption === 'bankTransfer' && (
-                          <span className="w-full h-full bg-black rounded-full"></span>
-                        )}
-                      </span>
-                      <span
-                        className={
-                          selectedOption === 'bankTransfer'
-                            ? 'text-black'
-                            : 'text-gray-400'
-                        }
-                      >
-                        Direct Bank Transfer
-                      </span>
-                    </label>
-                  </div>
-                  <p
-                    className={`mt-1 ${
-                      selectedOption === 'bankTransfer'
-                        ? 'text-black'
-                        : 'text-gray-400'
-                    }`}
+              <div className="lg:w-[528px] h-auto flex flex-col">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    id="bankTransfer"
+                    checked={selectedOption === 'bankTransfer'}
+                    onChange={() => handleOptionChange('bankTransfer')}
+                    className="hidden peer"
+                  />
+                  <label
+                    htmlFor="bankTransfer"
+                    className={`flex items-center gap-2 cursor-pointer peer-checked:text-black`}
                   >
-                    Make your payment directly into our bank account. Please use
-                    your Order ID as the payment reference. Your order will not
-                    be shipped until the funds have cleared in our account.
-                  </p>
+                    <span
+                      className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${
+                        selectedOption === 'bankTransfer'
+                          ? 'border-black'
+                          : 'border-gray-400'
+                      }`}
+                    >
+                      {selectedOption === 'bankTransfer' && (
+                        <span className="w-full h-full bg-black rounded-full"></span>
+                      )}
+                    </span>
+                    <span
+                      className={
+                        selectedOption === 'bankTransfer'
+                          ? 'text-black'
+                          : 'text-gray-400'
+                      }
+                    >
+                      Direct Bank Transfer
+                    </span>
+                  </label>
                 </div>
+                <p
+                  className={`mt-1 ${
+                    selectedOption === 'bankTransfer'
+                      ? 'text-black'
+                      : 'text-gray-400'
+                  }`}
+                >
+                  Make your payment directly into our bank account. Please use
+                  your Order ID as the payment reference. Your order will not be
+                  shipped until the funds have cleared in our account.
+                </p>
               </div>
-
-              <div className="flex gap-2">
+              <div className="flex gap-2 mt-4">
                 <input
                   type="radio"
                   id="cashOnDelivery"
@@ -345,27 +340,16 @@ const Checkout = () => {
                         : 'text-gray-400'
                     }
                   >
-                    Cash On Delivery
+                    Cash on Delivery
                   </span>
                 </label>
               </div>
-              <div className="lg:w-[529px] h-[72px] w-full">
-                <p>
-                  Your personal data will be used to support your experience
-                  throughout this website, to manage access to your account, and
-                  for other purposes described in our{' '}
-                  <span className="font-bold">privacy policy.</span>
-                </p>
-              </div>
-              <div className="flex items-center justify-center">
-                <button
-                  type="submit"
-                  className="lg:w-[318px] w-full h-[64px] border border-color-transparent rounded-xl"
-                  onClick={handleExternalSubmit}
-                >
-                  Place Order
-                </button>
-              </div>
+              <button
+                className="w-full h-[70px] bg-custom-btn-yellow text-white rounded-xl mt-4"
+                onClick={handleExternalSubmit}
+              >
+                Place Order
+              </button>
             </div>
           </div>
         </div>

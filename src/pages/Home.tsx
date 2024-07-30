@@ -51,7 +51,7 @@ const Home = () => {
       >
         <div className="md:w-[600px] w-full h-[440px] bg-custom-bg flex   absolute md:right-60 top-1/2 transform -translate-y-1/2 overflow-hidden">
           <div className="bg-custom-bg ">
-            <div className="flex flex-col px-8 py-12 gap-6 container">
+            <div className="flex flex-col px-8 py-12 gap-6  h-full w-full ">
               <p className="text-xl font-semibold">New Arrival</p>
               <p className=" mt-2 text-custom-text-yellow font-bold text-5xl">
                 Discover Our
@@ -62,7 +62,7 @@ const Home = () => {
                 tellus, luctus nec, ullamcorper mattis.
               </p>
               <button
-                className="mt-4 bg-custom-text-yellow text-white  w-48 h-16"
+                className="mt-4 bg-custom-text-yellow text-white  md:w-48 md:h-16 w-full "
                 onClick={handleClickShopBuyNow}
               >
                 BUY NOW

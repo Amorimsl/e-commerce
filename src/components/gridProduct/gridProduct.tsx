@@ -60,7 +60,7 @@ const GridProduct: React.FC<{
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[1220px]">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[1220px]">
       {products.slice(0, visibleProducts).map((product) => (
         <div
           key={product.id}
