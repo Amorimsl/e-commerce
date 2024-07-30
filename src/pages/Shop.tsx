@@ -28,7 +28,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/products');
+        const response = await fetch('http://54.196.12.70:4000/products');
         const data: Product[] = await response.json();
         setAllProducts(data);
 

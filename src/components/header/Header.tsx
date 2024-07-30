@@ -48,7 +48,7 @@ const Header = () => {
   async function handleLogout() {
     try {
       await auth.signOut();
-      window.location.href = '/Login';
+      navigate('/Login');
     } catch (error) {
       if (error instanceof Error) {
         console.log('Error logging out:', error.message);

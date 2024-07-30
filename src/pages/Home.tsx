@@ -11,7 +11,7 @@ const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/products')
+    fetch('http://54.196.12.70:4000/products')
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);

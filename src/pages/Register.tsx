@@ -5,12 +5,14 @@ import { auth, db } from '../firebase/firebase';
 import { setDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassWord] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ const Register = () => {
       }
 
       toast.success('User Registered Successfully', { position: 'top-center' });
-      window.location.href = '/login';
+      navigate(`/Login`);
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message, { position: 'bottom-center' });
