@@ -57,14 +57,17 @@ const Header = () => {
       }
     }
   }
+
   const navigate = useNavigate();
 
   const handleCartClick = () => {
     setShowTooltip(!showTooltip);
   };
+
   const handleCloseTooltip = () => {
     setShowTooltip(false);
   };
+
   const handleRemoveItem = (id: string) => {
     setAddToCard((prevAddToCard) => {
       const updatedAddToCard = prevAddToCard
@@ -78,10 +81,12 @@ const Header = () => {
       return updatedAddToCard;
     });
   };
+
   const CartProduct = () => {
     navigate('/Cart');
     window.scrollTo(0, 0);
   };
+
   const CheckoutPage = () => {
     navigate('/Checkout');
     window.scrollTo(0, 0);
@@ -90,28 +95,35 @@ const Header = () => {
   const LoginPage = () => {
     navigate('/Login');
   };
+
   const backToHome = () => {
     navigate('/');
   };
+
   return (
     <header className="py-4 px-4 md:px-6 md:py-6 relative md:flex md:justify-around md:items-center">
       <div className="flex justify-between items-center">
         <div
           className="flex items-center gap-2 cursor-pointer"
           onClick={backToHome}
+          data-testid="logo-container"
         >
           <img
             src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Logo.svg"
             alt="Logo SVG"
             className="w-10 h-10"
+            data-testid="logo-img"
           />
-          <p className="font-bold text-2xl md:text-3xl">Furniro</p>
+          <p className="font-bold text-2xl md:text-3xl" data-testid="logo-text">
+            Furniro
+          </p>
         </div>
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle mobile menu"
             className="focus:outline-none"
+            data-testid="toggle-mobile-menu"
           >
             <svg
               className="w-6 h-6"
@@ -119,6 +131,7 @@ const Header = () => {
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              data-testid="toggle-mobile-menu-icon"
             >
               <path
                 strokeLinecap="round"
@@ -138,22 +151,37 @@ const Header = () => {
         }`}
         role="navigation"
         aria-label="Mobile Navigation"
+        data-testid="mobile-menu"
       >
         <nav className="flex flex-col items-start font-medium">
           <ul className="mb-4">
             <li>
-              <Link to="/" className="block py-2 px-4">
+              <Link
+                to="/"
+                className="block py-2 px-4"
+                data-testid="mobile-home-link"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/Shop" className="block py-2 px-4">
+              <Link
+                to="/Shop"
+                className="block py-2 px-4"
+                data-testid="mobile-shop-link"
+              >
                 Shop
               </Link>
             </li>
-            <li className="block py-2 px-4">About</li>
+            <li className="block py-2 px-4" data-testid="mobile-about-link">
+              About
+            </li>
             <li>
-              <Link to="/Contact" className="block py-2 px-4">
+              <Link
+                to="/Contact"
+                className="block py-2 px-4"
+                data-testid="mobile-contact-link"
+              >
                 Contact
               </Link>
             </li>
@@ -163,6 +191,7 @@ const Header = () => {
               <button
                 onClick={handleLogout}
                 className="text-white bg-custom-text-yellow px-4 py-2 rounded w-20 h-8 items-center text-center flex"
+                data-testid="logout-button"
               >
                 Logout
               </button>
@@ -172,13 +201,15 @@ const Header = () => {
                 alt="Login"
                 onClick={LoginPage}
                 className="cursor-pointer w-6 h-6"
+                data-testid="login-icon"
               />
             )}
             <img
               src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Shop.svg"
               alt="Shop"
-              className="w-6 h-6"
               onClick={handleCartClick}
+              className="w-6 h-6"
+              data-testid="cart-icon"
             />
           </div>
         </nav>
@@ -186,26 +217,33 @@ const Header = () => {
 
       <div className="hidden md:flex gap-4">
         <nav
-          className="flex gap-12 font-medium text-base "
+          className="flex gap-12 font-medium text-base"
           role="navigation"
           aria-label="Desktop Navigation"
+          data-testid="desktop-nav"
         >
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" data-testid="desktop-home-link">
+                Home
+              </Link>
             </li>
           </ul>
           <ul>
             <li>
-              <Link to="/Shop">Shop</Link>
+              <Link to="/Shop" data-testid="desktop-shop-link">
+                Shop
+              </Link>
             </li>
           </ul>
           <ul>
-            <li>About</li>
+            <li data-testid="desktop-about-link">About</li>
           </ul>
           <ul>
             <li>
-              <Link to="/Contact">Contact</Link>
+              <Link to="/Contact" data-testid="desktop-contact-link">
+                Contact
+              </Link>
             </li>
           </ul>
         </nav>
@@ -217,6 +255,7 @@ const Header = () => {
               <button
                 onClick={handleLogout}
                 className="text-white bg-custom-text-yellow px-4 py-2 rounded"
+                data-testid="desktop-logout-button"
               >
                 Logout
               </button>
@@ -226,6 +265,7 @@ const Header = () => {
                 alt="Login"
                 onClick={LoginPage}
                 className="cursor-pointer"
+                data-testid="desktop-login-icon"
               />
             )}
             <img
@@ -233,9 +273,13 @@ const Header = () => {
               alt="Shop"
               onClick={handleCartClick}
               className="cursor-pointer"
+              data-testid="desktop-cart-icon"
             />
             {cartQuantity > 0 && (
-              <div className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              <div
+                className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center"
+                data-testid="cart-quantity"
+              >
                 {cartQuantity}
               </div>
             )}
@@ -247,9 +291,13 @@ const Header = () => {
         <>
           <div
             className="fixed inset-0 bg-gray-800 bg-opacity-50 z-20"
-            onClick={handleCloseTooltip}
+            data-testid="tooltip-overlay"
           ></div>
-          <div className="fixed top-0 right-0 md:flex md:items-center md:justify-center md:inset-0 z-30">
+          <div
+            className="fixed top-0 right-0 md:flex md:items-center md:justify-center md:inset-0 z-30"
+            data-testid="tooltip-content"
+            onClick={handleCloseTooltip}
+          >
             <div className="w-[90%] max-w-[417px] h-[90%] max-h-[746px] bg-white p-4 flex flex-col md:w-[417px] md:h-[746px] md:top-0 md:right-0 md:fixed">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Shopping Cart</h2>
@@ -280,7 +328,10 @@ const Header = () => {
                       <div className="ml-4 flex-1">
                         <p className="text-lg font-semibold">{item.title}</p>
                         <div className="flex gap-3">
-                          <p className="text-gray-600">
+                          <p
+                            className="text-gray-600"
+                            data-testid="cart-quantity"
+                          >
                             {item.quantity} <span>X</span>
                           </p>
                           <p className="text-custom-text-yellow font-medium">

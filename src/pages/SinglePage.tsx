@@ -251,7 +251,7 @@ const SinglePage = () => {
         </div>
       </section>
       <section className="h-[744px] flex justify-center items-center flex-col gap-6 ">
-        <div className="h-[36px] w-[535px] flex justify-between items-center">
+        <div className="h-[36px] w-[535px] flex justify-between items-center md:flex-row flex-col">
           <h1 className="text-lg font-semibold">Description</h1>
           <span className="text-color-transparent text-lg">
             Additional Information

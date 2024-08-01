@@ -94,6 +94,7 @@ const GridProduct: React.FC<{
               <button
                 className="bg-white text-custom-text-yellow px-12 py-3 font-semibold"
                 onClick={(e) => handleAddToCart(product, e)}
+                data-testid="add-to-cart-button"
               >
                 Add to Cart
               </button>

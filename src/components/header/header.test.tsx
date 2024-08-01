@@ -1,73 +1,106 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-
-import { MemoryRouter } from 'react-router-dom';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import Header from './Header';
+import { BrowserRouter } from 'react-router-dom';
+
+vi.mock('../../context/exportContext', () => ({
+  useProducts: () => ({
+    addToCard: [
+      {
+        id: '1',
+        title: 'Produto 1',
+        images: {
+          mainImage: 'https://via.placeholder.com/150',
+          gallery: [
+            'https://via.placeholder.com/150',
+            'https://via.placeholder.com/200',
+          ],
+        },
+        price: 100,
+        quantity: 2,
+        normalPrice: 100,
+      },
+    ],
+    setAddToCard: vi.fn(),
+    userDetails: {
+      email: 'test@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+    },
+    setUserDetails: vi.fn(),
+    getCartQuantity: () => 1,
+  }),
+}));
 
 describe('Header Component', () => {
-  it('should render the header with expected content', () => {
+  it('should render the logo and navigate to home on click and navlinks', () => {
     render(
-      <MemoryRouter>
+      <BrowserRouter>
         <Header />
-      </MemoryRouter>
+      </BrowserRouter>
     );
 
-    expect(screen.getByAltText('Logo SVG')).toBeInTheDocument();
-    expect(screen.getAllByText('Home').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Shop').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('About').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Contact').length).toBeGreaterThan(0);
+    const logoContainer = screen.getByTestId('logo-container');
+    expect(logoContainer).toBeInTheDocument();
 
-    expect(screen.getAllByAltText('Login').length).toBeGreaterThan(0);
-    expect(screen.getAllByAltText('Shop').length).toBeGreaterThan(0);
+    fireEvent.click(logoContainer);
+
+    expect(screen.getByTestId('logo-text')).toHaveTextContent('Furniro');
+    expect(screen.getByTestId('desktop-home-link')).toBeInTheDocument();
+    expect(screen.getByTestId('desktop-shop-link')).toBeInTheDocument();
+    expect(screen.getByTestId('desktop-about-link')).toBeInTheDocument();
+    expect(screen.getByTestId('desktop-contact-link')).toBeInTheDocument();
   });
 
-  it('should render the desktop navigation correctly', () => {
+  it('should toggle mobile menu on button click', () => {
     render(
-      <MemoryRouter>
+      <BrowserRouter>
         <Header />
-      </MemoryRouter>
+      </BrowserRouter>
     );
 
-    const desktopNav = screen.getByRole('navigation', {
-      name: 'Desktop Navigation',
-    });
-    expect(desktopNav).toBeInTheDocument();
+    const mobileMenu = screen.getByTestId('mobile-menu');
+    expect(mobileMenu).toHaveClass('hidden');
 
-    const homeLink = desktopNav.querySelector('a[href="/"]');
-    const shopLink = desktopNav.querySelector('a[href="/Shop"]');
-    const aboutLink = desktopNav.querySelector('a[href="/About"]');
-    const contactLink = desktopNav.querySelector('a[href="/Contact"]');
+    fireEvent.click(screen.getByTestId('toggle-mobile-menu'));
 
-    expect(homeLink).toBeInTheDocument();
-    expect(shopLink).toBeInTheDocument();
-    expect(aboutLink).toBeInTheDocument();
-    expect(contactLink).toBeInTheDocument();
+    expect(mobileMenu).toHaveClass('fixed');
+
+    fireEvent.click(screen.getByTestId('toggle-mobile-menu'));
+
+    expect(mobileMenu).toHaveClass('hidden');
   });
 
-  it('should render the mobile navigation correctly when open', () => {
+  it('should display cart quantity when items are added to the cart', () => {
     render(
-      <MemoryRouter>
+      <BrowserRouter>
         <Header />
-      </MemoryRouter>
+      </BrowserRouter>
     );
 
-    const menuButton = screen.getByLabelText(/Toggle mobile menu/i);
+    const cartQuantity = screen.getByTestId('cart-quantity');
+    expect(cartQuantity).toBeInTheDocument();
+    expect(cartQuantity.textContent).toBe('1');
+  });
 
-    fireEvent.click(menuButton);
+  it('should show tooltip with cart items when cart icon is clicked', async () => {
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
 
-    const mobileNav = screen.getByRole('navigation', {
-      name: 'Mobile Navigation',
+    expect(screen.queryByTestId('tooltip-overlay')).toBeNull();
+
+    const cartIcon = screen.getByTestId('desktop-cart-icon');
+    fireEvent.click(cartIcon);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('tooltip-overlay')).toBeVisible();
     });
-    expect(mobileNav).toBeInTheDocument();
 
-    const homeLink = mobileNav.querySelector('a[href="/"]');
-    const shopLink = mobileNav.querySelector('a[href="/Shop"]');
-    const aboutLink = mobileNav.querySelector('a[href="/About"]');
-    const contactLink = mobileNav.querySelector('a[href="/Contact"]');
-
-    expect(homeLink).toBeInTheDocument();
-    expect(shopLink).toBeInTheDocument();
-    expect(aboutLink).toBeInTheDocument();
-    expect(contactLink).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('cart-quantity')).toBeVisible();
+    });
   });
 });

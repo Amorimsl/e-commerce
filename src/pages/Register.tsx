@@ -47,13 +47,21 @@ const Register = () => {
       <ImageCards />
       <div className="flex flex-col items-center justify-center bg-gray-100 py-16">
         <section className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-          <h1 className="text-2xl font-semibold text-center text-gray-700">
+          <h1
+            data-testid="register-title"
+            className="text-2xl font-semibold text-center text-gray-700"
+          >
             Registrar
           </h1>
-          <form className="space-y-6" onSubmit={handleRegister}>
+          <form
+            data-testid="register-form"
+            className="space-y-6"
+            onSubmit={handleRegister}
+          >
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="firstName"
+                data-testid="first-name-label"
                 className="text-sm font-medium text-gray-600"
               >
                 Nome
@@ -62,6 +70,7 @@ const Register = () => {
                 type="text"
                 id="firstName"
                 name="firstName"
+                data-testid="first-name-input"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
                 required
                 onChange={(e) => setFirstName(e.target.value)}
@@ -70,6 +79,7 @@ const Register = () => {
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="lastName"
+                data-testid="last-name-label"
                 className="text-sm font-medium text-gray-600"
               >
                 Sobrenome
@@ -78,6 +88,7 @@ const Register = () => {
                 type="text"
                 id="lastName"
                 name="lastName"
+                data-testid="last-name-input"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
                 required
                 onChange={(e) => setLastName(e.target.value)}
@@ -86,6 +97,7 @@ const Register = () => {
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="email"
+                data-testid="email-label"
                 className="text-sm font-medium text-gray-600"
               >
                 Email
@@ -94,6 +106,7 @@ const Register = () => {
                 type="email"
                 id="email"
                 name="email"
+                data-testid="email-input"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
                 required
                 onChange={(e) => setEmail(e.target.value)}
@@ -102,6 +115,7 @@ const Register = () => {
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="password"
+                data-testid="password-label"
                 className="text-sm font-medium text-gray-600"
               >
                 Senha
@@ -110,12 +124,14 @@ const Register = () => {
                 type="password"
                 id="password"
                 name="password"
+                data-testid="password-input"
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400"
                 required
                 onChange={(e) => setPassWord(e.target.value)}
               />
             </div>
             <button
+              data-testid="register-button"
               type="submit"
               className="w-full px-4 py-2 text-white bg-indigo-600 rounded-lg focus:outline-none hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-400"
             >
