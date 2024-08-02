@@ -4,7 +4,6 @@ import ProtectedRoute from './ProtectRoute';
 import { User } from 'firebase/auth';
 import Login from '../../pages/Login/Login';
 
-// Componente de teste para o redirecionamento
 const MockComponent = () => <div>Protected Content</div>;
 
 describe('ProtectedRoute', () => {
@@ -24,8 +23,6 @@ describe('ProtectedRoute', () => {
         </Routes>
       </MemoryRouter>
     );
-
-    // Espera até que a URL seja atualizada para verificar a redireção
   });
 
   it('renders children if user is authenticated', () => {

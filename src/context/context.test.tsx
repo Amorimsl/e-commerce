@@ -1,4 +1,3 @@
-// ProductsContext.test.tsx
 import { render, screen, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { ProductsProvider, ProductsContext } from './context';

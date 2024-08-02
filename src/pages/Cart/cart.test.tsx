@@ -1,4 +1,3 @@
-// Cart.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Cart from './Cart';
@@ -63,7 +62,6 @@ describe('Cart', () => {
     const removeItemButton = screen.getByAltText('Remove item');
     fireEvent.click(removeItemButton);
 
-    // Assertions
     expect(screen.getByText('Rp.200')).toBeInTheDocument();
   });
 

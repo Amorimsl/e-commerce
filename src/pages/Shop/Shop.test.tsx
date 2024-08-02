@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Shop from './Shop';
-import { useProducts } from '../../context/exportContext'; // Corrija o caminho conforme necessário
+import { useProducts } from '../../context/exportContext';
 import {
   Product,
   AddToCard,

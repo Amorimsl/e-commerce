@@ -1,4 +1,3 @@
-// Products.test.tsx
 import { screen } from '@testing-library/react';
 import Products from './Products';
 import { Product } from '../../context/context';

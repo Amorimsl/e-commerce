@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, RenderOptions } from '@testing-library/react'; // Certifique-se de que isso está presente
+import { render, RenderOptions } from '@testing-library/react';
 import { ProductsProvider } from '../../context/context';
 
 export const renderWithProductsProvider = (
