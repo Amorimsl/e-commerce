@@ -6,6 +6,7 @@ import React, {
   SetStateAction,
   useEffect,
 } from 'react';
+
 type Color = {
   name: string;
   hex: string;
@@ -35,10 +36,11 @@ export type Product = {
   price: number;
 };
 
-interface AddToCard extends Product {
+export interface AddToCard extends Product {
   quantity: number;
 }
-interface UserDetails {
+
+export interface UserDetails {
   email: string;
   firstName: string;
   lastName: string;
@@ -105,11 +107,13 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
       return updatedCart;
     });
   };
+
   const removeItem = (id: string) => {
     setAddToCard((prevAddToCart) =>
       prevAddToCart.filter((item) => item.id !== id)
     );
   };
+
   const updateQuantity = (id: string, amount: number) => {
     setAddToCard((prevAddToCart) => {
       const updatedCart = prevAddToCart.map((item) =>

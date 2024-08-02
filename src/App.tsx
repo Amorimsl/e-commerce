@@ -4,15 +4,15 @@ import {
   Routes,
   Navigate,
 } from 'react-router-dom';
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import Contact from './pages/Contact';
-import SinglePage from './pages/SinglePage';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-import Login from './pages/Login';
+import Home from './pages/Home/Home';
+import Shop from './pages/Shop/Shop';
+import Contact from './pages/Contact/Contact';
+import SinglePage from './pages/Single/SinglePage';
+import Cart from './pages/Cart/Cart';
+import Checkout from './pages/Checkout/Checkout';
+import Login from './pages/Login/Login';
 import Layout from './layout/Layout';
-import Register from './pages/Register';
+import Register from './pages/Register/Register';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';

@@ -296,7 +296,6 @@ const Header = () => {
           <div
             className="fixed top-0 right-0 md:flex md:items-center md:justify-center md:inset-0 z-30"
             data-testid="tooltip-content"
-            onClick={handleCloseTooltip}
           >
             <div className="w-[90%] max-w-[417px] h-[90%] max-h-[746px] bg-white p-4 flex flex-col md:w-[417px] md:h-[746px] md:top-0 md:right-0 md:fixed">
               <div className="flex justify-between items-center mb-4">

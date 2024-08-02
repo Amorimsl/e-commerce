@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './ProtectRoute';
 import { User } from 'firebase/auth';
-import Login from '../../pages/Login';
+import Login from '../../pages/Login/Login';
 
 // Componente de teste para o redirecionamento
 const MockComponent = () => <div>Protected Content</div>;

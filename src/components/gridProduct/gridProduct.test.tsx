@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, vi, Mock } from 'vitest';
 import { useProducts } from '../../context/exportContext';
 import GridProduct from './gridProduct';
 import { Product } from '../../context/context';
@@ -58,7 +58,7 @@ const mockAddToCart = vi.fn();
 const mockSetSingleProduct = vi.fn();
 
 beforeEach(() => {
-  (useProducts as vi.Mock).mockReturnValue({
+  (useProducts as Mock).mockReturnValue({
     addToCart: mockAddToCart,
     setSingleProduct: mockSetSingleProduct,
   });
@@ -127,7 +127,7 @@ describe('GridProduct', () => {
         sizes: ['M'],
         rating: 4.5,
         description: { short: 'Short description for Product 1' },
-        price: 100, // Adjusted to match the actual value in the implementation
+        price: 100,
         quantity: 1,
       })
     );
@@ -160,7 +160,7 @@ describe('GridProduct', () => {
         sizes: ['L'],
         rating: 4.0,
         description: { short: 'Short description for Product 2' },
-        price: 120, // Adjusted to match the actual value in the implementation
+        price: 120,
         quantity: 1,
       })
     );

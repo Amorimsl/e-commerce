@@ -1,6 +1,6 @@
 // Products.test.tsx
 import { screen } from '@testing-library/react';
-import Products from './Products'; // Ajuste o caminho conforme necessário
+import Products from './Products';
 import { Product } from '../../context/context';
 import { MemoryRouter } from 'react-router-dom';
 import { renderWithProductsProvider } from './test-utils';
