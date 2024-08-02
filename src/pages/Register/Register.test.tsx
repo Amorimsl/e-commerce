@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import Register from './Register';
 
 describe('RegisterForm', () => {
-  it('deve renderizar todos os inputs e o botão de submit', () => {
+  it('should render all inputs and the submit button', () => {
     render(
       <MemoryRouter>
         <Register />
@@ -22,7 +22,7 @@ describe('RegisterForm', () => {
     expect(screen.getByTestId('register-button')).toBeInTheDocument();
   });
 
-  it('deve chamar a função handleRegister quando o formulário é enviado', async () => {
+  it('should call the handleRegister function when the form is submitted', async () => {
     render(
       <MemoryRouter>
         <Register />
@@ -45,7 +45,7 @@ describe('RegisterForm', () => {
     fireEvent.submit(screen.getByTestId('register-form'));
   });
 
-  it('deve exibir erros quando os campos são preenchidos incorretamente', async () => {
+  it('should display errors when fields are filled out incorrectly', async () => {
     render(
       <MemoryRouter>
         <Register />

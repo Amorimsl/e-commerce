@@ -13,6 +13,7 @@ const SinglePage = () => {
     singleProduct?.images?.mainImage || ''
   );
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState('L');
 
   useEffect(() => {
     if (singleProduct) {
@@ -90,7 +91,9 @@ const SinglePage = () => {
   const decreaseQuantity = () => {
     setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
   };
-
+  const handleSizeClick = (size: string) => {
+    setSelectedSize(size);
+  };
   return (
     <>
       <section className="w-full py-8 bg-custom-bg flex flex-col sm:flex-row items-center  ">
@@ -163,9 +166,12 @@ const SinglePage = () => {
                   {['L', 'XL', 'XS'].map((size) => (
                     <div
                       key={size}
-                      className={`w-[30px] h-[30px] ${
-                        size === 'L' ? 'bg-custom-text-yellow' : 'bg-custom-bg'
-                      } rounded-lg flex justify-center items-center`}
+                      className={`w-[30px] h-[30px] rounded-lg flex justify-center items-center cursor-pointer ${
+                        selectedSize === size
+                          ? 'bg-custom-text-yellow'
+                          : 'bg-custom-bg'
+                      }`}
+                      onClick={() => handleSizeClick(size)}
                     >
                       <button className="text-xs">{size}</button>
                     </div>

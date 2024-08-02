@@ -194,4 +194,26 @@ describe('SinglePage Component', () => {
     render(<MockSinglePage />);
     expect(screen.getByText('Related Products')).toBeInTheDocument();
   });
+
+  it('should change background color when a size is clicked', () => {
+    render(<MockSinglePage />);
+
+    const sizeL = screen.getByText('L').parentElement;
+    const sizeXL = screen.getByText('XL').parentElement;
+    const sizeXS = screen.getByText('XS').parentElement;
+
+    expect(sizeL).toHaveClass('bg-custom-text-yellow');
+    expect(sizeXL).toHaveClass('bg-custom-bg');
+    expect(sizeXS).toHaveClass('bg-custom-bg');
+
+    fireEvent.click(screen.getByText('XL'));
+    expect(sizeL).toHaveClass('bg-custom-bg');
+    expect(sizeXL).toHaveClass('bg-custom-text-yellow');
+    expect(sizeXS).toHaveClass('bg-custom-bg');
+
+    fireEvent.click(screen.getByText('XS'));
+    expect(sizeL).toHaveClass('bg-custom-bg');
+    expect(sizeXL).toHaveClass('bg-custom-bg');
+    expect(sizeXS).toHaveClass('bg-custom-text-yellow');
+  });
 });
