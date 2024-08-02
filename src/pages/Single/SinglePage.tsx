@@ -82,6 +82,7 @@ const SinglePage = () => {
   const handleImageClick = (image: string) => {
     setMainImage(image);
   };
+
   const increaseQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };

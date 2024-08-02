@@ -5,7 +5,7 @@ const categories = [
   'Racks',
   'Sofás',
   'Mesas',
-  'Armários',
+  'Armarios',
   'Cadeiras',
   'Escrivaninhas',
 ];
