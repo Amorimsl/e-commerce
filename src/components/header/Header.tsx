@@ -48,6 +48,7 @@ const Header = () => {
   async function handleLogout() {
     try {
       await auth.signOut();
+      setUserDetails(null);
       navigate('/Login');
     } catch (error) {
       if (error instanceof Error) {

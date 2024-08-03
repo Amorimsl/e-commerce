@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-// @ts-expect-error: Ignoring TS error due to type definitions mismatch
+//@ts-expect-error: Ignoring TS error due to type definitions mismatch
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { Product } from '../../context/context';
