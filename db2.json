@@ -6,7 +6,7 @@
       "title": "Cadeira para decoração",
       "category": "Sala",
       "tags": ["Sala"],
-      "normalPrice": 1.729,
+      "normalPrice": 1729.0,
       "salePrice": 890.92,
       "discountPercentage": 0.48,
       "new": true,
@@ -38,7 +38,7 @@
       "title": "Rack Fortaleza Freijó 218 cm",
       "category": "Racks",
       "tags": ["Rack", "Rack-Fortaleza", "Sala"],
-      "normalPrice": 1.729,
+      "normalPrice": 1729.0,
       "salePrice": 890.92,
       "discountPercentage": 0.48,
       "new": true,
@@ -1061,8 +1061,8 @@
       "category": "Armarios",
       "tags": ["Armario", "Casa", "Quarto"],
       "normalPrice": 1489.99,
-      "salePrice": 0,
-      "discountPercentage": 0,
+      "salePrice": 1729.0,
+      "discountPercentage": 1729.0,
       "new": true,
       "description": {
         "short": "Funcional e completo para compor o dormitório de casal.",
@@ -1117,7 +1117,7 @@
       "sizes": ["L", "XL", "XS"],
       "rating": 4,
       "images": {
-        "mainImage": "https://e-commerceuol.s3.eu-north-1.amazonaws.com/ImagesSprint-12/imagem+id34+main.jpg",
+        "mainImage": "https://e-commerceuol.s3.eu-north-1.amazonaws.com/ImagesSprint-12/imagem+id34+main+.jpg",
         "gallery": [
           "https://e-commerceuol.s3.eu-north-1.amazonaws.com/ImagesSprint-12/imagem+id34+gallery+1.jpg",
           "https://e-commerceuol.s3.eu-north-1.amazonaws.com/ImagesSprint-12/imagem+id34+gallery+2.jpg",
@@ -1133,8 +1133,8 @@
       "category": "Armarios",
       "tags": ["Armario", "Casa", "Quarto"],
       "normalPrice": 579.99,
-      "salePrice": 0,
-      "discountPercentage": 0,
+      "salePrice": 2828.99,
+      "discountPercentage": 2828.99,
       "new": false,
       "description": {
         "short": "O Guarda-Roupa Studio é uma solução versátil e perfeita para transformar o seu quarto em um espaço bem organizado e cheio de charme: do tipo closet, ele pode ser usado sozinho ou combinado com outros módulos, assim você cria um móvel personalizado e que atende às suas necessidades específicas.",

@@ -368,10 +368,10 @@ const Header = () => {
                   {addToCard
                     .reduce(
                       (total, item) =>
-                        total + item.normalPrice * (item.quantity || 1),
+                        total + Number(item.price) * (item.quantity || 1),
                       0
                     )
-                    .toFixed(4)}
+                    .toFixed(2)}
                 </span>
               </div>
               <div className="mt-4 flex justify-between">
