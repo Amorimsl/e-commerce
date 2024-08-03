@@ -27,6 +27,16 @@ json-server --watch db2.json
 npm run dev
 ```
 
+## Verificar Testes
+
+Para verificar coverage ou rodar teste:
+
+```bash
+npm install
+npm  run test
+npm run coverage
+```
+
 ## Estrutura de Pastas
 
 A estrutura de pastas do projeto é a seguinte:
@@ -47,6 +57,8 @@ A estrutura de pastas do projeto é a seguinte:
       - `... (outros arquivos relacionados aos products)`
     - `productRoute/`
       - `... (outros arquivos relacionados ao productRoute)`
+      - `similarProduct/`
+      - `... (outros arquivos relacionados ao similarProduct)`
     - `slide/`
       - `... (outros arquivos relacionados ao slide)`
     - `tooltipFilter/`
@@ -95,14 +107,11 @@ A estrutura de pastas do projeto é a seguinte:
 - **Ainda em produção de teste (não esta 100% testado)**
   Utiliza **vitest com Jest** para executar testes automatizados e garantir que o código esteja funcionando conforme esperado. Os testes são configurados para verificar o comportamento dos componentes e a lógica de negócios, ajudando a identificar e corrigir problemas rapidamente durante o desenvolvimento.
 
-- **Estilo Global**  
-  Os estilos globais são definidos em `index.css`, aplicando uma base consistente de estilos em todo o aplicativo. Isso inclui a configuração de fontes, cores e outras propriedades de estilo que são usadas em todos os componentes.
-
 ## Autor
 
 ### Lucas Amorim
 
-Olá! Sou Lucas Amorim, o desenvolvedor por trás deste projeto. Tenho experiência em várias tecnologias de desenvolvimento web e sou apaixonado por criar aplicações web elegantes e funcionais. Aqui estão algumas informações sobre mim:
+Olá! Sou Lucas Amorim
 
 - **Perfil no GitHub**: [Lucas Amorim](https://github.com/amorimsl)  
   No meu perfil do GitHub, você pode encontrar mais projetos e contribuições que fiz. Sinta-se à vontade para explorar meus repositórios e seguir-me para acompanhar meus projetos mais recentes.
