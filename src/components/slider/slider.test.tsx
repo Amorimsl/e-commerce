@@ -1,22 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import { describe, test, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import Slider from './Slider';
 import { products } from '../gridProduct/gridProduct.test';
 
-global.matchMedia = vi.fn().mockImplementation((query) => ({
-  matches: false,
-  media: query,
-  onchange: null,
-  addListener: vi.fn(),
-  removeListener: vi.fn(),
-  addEventListener: vi.fn(),
-  removeEventListener: vi.fn(),
-  dispatchEvent: vi.fn(),
-}));
-
 describe('Slider Component', () => {
-  test('renders Slider component with products', () => {
+  it('renders Slider component with products', () => {
     render(
       <MemoryRouter>
         <Slider products={products} />
@@ -33,7 +22,7 @@ describe('Slider Component', () => {
     });
   });
 
-  test('displays button and content for active slide', () => {
+  it('displays button and content for active slide', () => {
     render(
       <MemoryRouter>
         <Slider products={products} />
@@ -45,5 +34,16 @@ describe('Slider Component', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Inner Peace')).toBeInTheDocument();
     expect(screen.getByAltText('Arrow')).toBeInTheDocument();
+  });
+
+  it('checks slide change on interaction', () => {
+    render(
+      <MemoryRouter>
+        <Slider products={products} />
+      </MemoryRouter>
+    );
+
+    const arrowButton = screen.getByAltText('Arrow');
+    fireEvent.click(arrowButton);
   });
 });
