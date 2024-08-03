@@ -357,11 +357,13 @@ const Header = () => {
                 <p className="font-bold">SubTotal</p>
                 <span className="font-semibold text-custom-text-yellow">
                   RS{' '}
-                  {addToCard.reduce(
-                    (total, item) =>
-                      total + item.normalPrice * (item.quantity || 1),
-                    0
-                  )}
+                  {addToCard
+                    .reduce(
+                      (total, item) =>
+                        total + item.normalPrice * (item.quantity || 1),
+                      0
+                    )
+                    .toFixed(2)}
                 </span>
               </div>
               <div className="mt-4 flex justify-between">
