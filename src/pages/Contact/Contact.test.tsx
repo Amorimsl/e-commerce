@@ -11,11 +11,13 @@ describe('Contact Page', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByPlaceholderText('John Doe')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Your Name')).toBeInTheDocument();
     expect(
       screen.getByPlaceholderText('example@domain.com')
     ).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Subject')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('This is an optional')
+    ).toBeInTheDocument();
     expect(
       screen.getByPlaceholderText("Hi! I'd like to ask about")
     ).toBeInTheDocument();
@@ -38,9 +40,6 @@ describe('Contact Page', () => {
       ).toBeInTheDocument();
       expect(screen.getByText(/Invalid email address/i)).toBeInTheDocument();
       expect(
-        screen.getByText(/Subject must be at least 6 characters long/i)
-      ).toBeInTheDocument();
-      expect(
         screen.getByText(/Message must be at least 6 characters long/i)
       ).toBeInTheDocument();
     });
@@ -52,20 +51,19 @@ describe('Contact Page', () => {
       </BrowserRouter>
     );
 
-    fireEvent.change(screen.getByPlaceholderText('John Doe'), {
-      target: { value: 'John Doe' },
+    fireEvent.change(screen.getByPlaceholderText('Your Name'), {
+      target: { value: 'Your Name' },
     });
     fireEvent.change(screen.getByPlaceholderText('example@domain.com'), {
       target: { value: 'john@example.com' },
     });
-    fireEvent.change(screen.getByPlaceholderText('Subject'), {
+    fireEvent.change(screen.getByPlaceholderText('This is an optional'), {
       target: { value: 'Inquiry' },
     });
     fireEvent.change(screen.getByPlaceholderText("Hi! I'd like to ask about"), {
       target: { value: 'I have a question.' },
     });
 
-    // Submeter o formulário
     fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
 
     await waitFor(() => {
@@ -74,9 +72,6 @@ describe('Contact Page', () => {
       ).not.toBeInTheDocument();
       expect(
         screen.queryByText(/Please enter a valid email/i)
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByText(/Please enter a subject/i)
       ).not.toBeInTheDocument();
       expect(
         screen.queryByText(/Please enter a message/i)
@@ -117,8 +112,8 @@ describe('Contact Page', () => {
       expect(screen.getByText(/Invalid email address/i)).toBeInTheDocument();
     });
 
-    fireEvent.change(screen.getByPlaceholderText('John Doe'), {
-      target: { value: 'John Doe Doe' },
+    fireEvent.change(screen.getByPlaceholderText('Your Name'), {
+      target: { value: 'Your Name' },
     });
     fireEvent.change(screen.getByPlaceholderText('example@domain.com'), {
       target: { value: 'john.doe@example.com' },

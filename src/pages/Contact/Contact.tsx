@@ -86,7 +86,7 @@ const Contact = () => {
                   type="text"
                   {...register('name')}
                   className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg px-2"
-                  placeholder="John Doe"
+                  placeholder="Your Name"
                 />
               </div>
               <div className="flex flex-col gap-1">
@@ -106,17 +106,12 @@ const Contact = () => {
               <div className="flex flex-col gap-1">
                 <div className="flex justify-between items-center">
                   <label>Subject</label>
-                  {errors.subject && (
-                    <span className="text-red-500">
-                      {errors.subject.message}
-                    </span>
-                  )}
                 </div>
                 <input
                   type="text"
                   {...register('subject')}
                   className="md:w-[528px] w-full md:h-[75px] h-auto border border-color-transparent rounded-lg px-2"
-                  placeholder="Subject"
+                  placeholder="This is an optional"
                 />
               </div>
               <div className="flex flex-col gap-1">
