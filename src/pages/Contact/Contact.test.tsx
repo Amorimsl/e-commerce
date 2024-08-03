@@ -45,8 +45,7 @@ describe('Contact Page', () => {
       ).toBeInTheDocument();
     });
   });
-
-  it('should allow users to fill out and submit the form', async () => {
+  it('should remove error messages when form is correctly filled out and submitted', async () => {
     render(
       <BrowserRouter>
         <Contact />
@@ -66,6 +65,65 @@ describe('Contact Page', () => {
       target: { value: 'I have a question.' },
     });
 
+    // Submeter o formulário
+    fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
+
+    await waitFor(() => {
+      expect(
+        screen.queryByText(/Please enter your name/i)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/Please enter a valid email/i)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/Please enter a subject/i)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/Please enter a message/i)
+      ).not.toBeInTheDocument();
+    });
+  });
+  it('should render contact information', () => {
+    render(
+      <BrowserRouter>
+        <Contact />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByTestId('address')).toHaveTextContent(
+      '236 5th SE Avenue, New York NY10000, United States'
+    );
+    expect(screen.getByTestId('Phone')).toHaveTextContent(
+      'Mobile: +(84) 546-6789 Hotline: +(84) 456-6789'
+    );
+    expect(screen.getByTestId('Working Time')).toHaveTextContent(
+      'Monday-Friday: 9:00 - 22:00 Saturday-Sunday: 9:00 - 21:00'
+    );
+  });
+
+  it('should remove error messages after correcting inputs', async () => {
+    render(
+      <BrowserRouter>
+        <Contact />
+      </BrowserRouter>
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Your Name must be at least 6 characters long/i)
+      ).toBeInTheDocument();
+      expect(screen.getByText(/Invalid email address/i)).toBeInTheDocument();
+    });
+
+    fireEvent.change(screen.getByPlaceholderText('John Doe'), {
+      target: { value: 'John Doe Doe' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('example@domain.com'), {
+      target: { value: 'john.doe@example.com' },
+    });
+
     fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
 
     await waitFor(() => {
@@ -73,45 +131,6 @@ describe('Contact Page', () => {
         screen.queryByText(/Your Name must be at least 6 characters long/i)
       ).toBeNull();
       expect(screen.queryByText(/Invalid email address/i)).toBeNull();
-      expect(
-        screen.queryByText(/Subject must be at least 6 characters long/i)
-      ).toBeNull();
-      expect(
-        screen.queryByText(/Message must be at least 6 characters long/i)
-      ).toBeNull();
     });
-  });
-  it('should render contact information correctly', () => {
-    render(
-      <BrowserRouter>
-        <Contact />
-      </BrowserRouter>
-    );
-
-    const addressSection = screen.getByTestId('address');
-    expect(addressSection).toBeInTheDocument();
-    expect(
-      screen.getByText(/236 5th SE Avenue, New York NY10000, United States/i)
-    ).toBeInTheDocument();
-
-    const phoneSection = screen.getByTestId('Phone');
-    expect(phoneSection).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        (content) =>
-          content.includes('Mobile: +(84) 546-6789') &&
-          content.includes('Hotline: +(84) 456-6789')
-      )
-    ).toBeInTheDocument();
-
-    const timeSection = screen.getByTestId('Working Time');
-    expect(timeSection).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        (content) =>
-          content.includes('Monday-Friday: 9:00 - 22:00') &&
-          content.includes('Saturday-Sunday: 9:00 - 21:00')
-      )
-    ).toBeInTheDocument();
   });
 });

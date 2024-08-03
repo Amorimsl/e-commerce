@@ -16,6 +16,7 @@ const ImageCards = () => {
           'url(https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/bgImageCards/ImageCards.svg)',
       }}
       className="bg-cover bg-center w-full h-96 flex items-center justify-center"
+      data-testid="image-cards"
     >
       <div className="flex flex-col text-center items-center">
         <img

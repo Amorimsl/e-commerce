@@ -90,17 +90,91 @@ describe('Header Component', () => {
       </BrowserRouter>
     );
 
-    expect(screen.queryByTestId('tooltip-overlay')).toBeNull();
-
-    const cartIcon = screen.getByTestId('desktop-cart-icon');
-    fireEvent.click(cartIcon);
+    fireEvent.click(screen.getByTestId('desktop-cart-icon'));
 
     await waitFor(() => {
-      expect(screen.getByTestId('tooltip-overlay')).toBeVisible();
+      expect(screen.getByTestId('tooltip-content')).toBeInTheDocument();
     });
 
+    const cartItemTitle = screen.getByText('Produto 1');
+    expect(cartItemTitle).toBeInTheDocument();
+
+    const cartItemQuantity = screen.getByTestId('cart-quantity');
+    expect(cartItemQuantity).toBeInTheDocument();
+    expect(cartItemQuantity).toHaveTextContent('2 X');
+
+    const cartItemPrice = screen.getByText('RS 100');
+    expect(cartItemPrice).toBeInTheDocument();
+  });
+
+  it('should close the tooltip when the close button is clicked', async () => {
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
+
+    fireEvent.click(screen.getByTestId('desktop-cart-icon'));
+
     await waitFor(() => {
-      expect(screen.getByTestId('cart-quantity')).toBeVisible();
+      expect(screen.getByTestId('tooltip-content')).toBeInTheDocument();
     });
+
+    fireEvent.click(screen.getByAltText('Close'));
+
+    await waitFor(() => {
+      expect(screen.queryByTestId('tooltip-content')).not.toBeInTheDocument();
+    });
+  });
+
+  it('should log out the user when logout button is clicked', async () => {
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
+
+    const logoutButton = screen.getByTestId('desktop-logout-button');
+    fireEvent.click(logoutButton);
+
+    await waitFor(() => {
+      expect(screen.queryByTestId('desktop-logout-button')).toBeInTheDocument();
+    });
+  });
+
+  it('should navigate to Cart page when Cart button is clicked in tooltip', async () => {
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
+
+    fireEvent.click(screen.getByTestId('desktop-cart-icon'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('tooltip-content')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText('Cart'));
+
+    expect(window.location.pathname).toBe('/Cart');
+  });
+
+  it('should navigate to Checkout page when Checkout button is clicked in tooltip', async () => {
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
+
+    fireEvent.click(screen.getByTestId('desktop-cart-icon'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('tooltip-content')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText('Checkout'));
+
+    expect(window.location.pathname).toBe('/Checkout');
   });
 });

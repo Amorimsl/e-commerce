@@ -1,6 +1,6 @@
 const QualityCertificate = () => {
   return (
-    <div className="py-32 bg-custom-bg">
+    <div className="py-32 bg-custom-bg" data-testid="quality-certificate">
       <div className="container mx-auto px-4 lg:px-8">
         <div
           className="flex flex-col lg:flex-row lg:justify-between items-center gap-8"
