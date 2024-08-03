@@ -92,7 +92,7 @@ const Cart = () => {
                       (total, item) => total + item.normalPrice * item.quantity,
                       0
                     )
-                    .toFixed(2)}
+                    .toFixed(4)}
                 </span>
               </div>
               <div className="flex flex-row items-center justify-between w-full px-4 xl:px-16">
@@ -104,7 +104,7 @@ const Cart = () => {
                       (total, item) => total + item.normalPrice * item.quantity,
                       0
                     )
-                    .toFixed(2)}
+                    .toFixed(4)}
                 </span>
               </div>
             </div>

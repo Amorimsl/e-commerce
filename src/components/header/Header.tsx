@@ -187,7 +187,7 @@ const Header = () => {
               </Link>
             </li>
           </ul>
-          <div className="flex gap-4">
+          <div className="flex gap-4 relative">
             {userDetails ? (
               <button
                 onClick={handleLogout}
@@ -212,6 +212,14 @@ const Header = () => {
               className="w-6 h-6"
               data-testid="cart-icon"
             />
+            {cartQuantity > 0 && (
+              <div
+                className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center md:-top-2 md:-right-2"
+                data-testid="cart-quantity"
+              >
+                {cartQuantity}
+              </div>
+            )}
           </div>
         </nav>
       </div>
@@ -363,7 +371,7 @@ const Header = () => {
                         total + item.normalPrice * (item.quantity || 1),
                       0
                     )
-                    .toFixed(2)}
+                    .toFixed(4)}
                 </span>
               </div>
               <div className="mt-4 flex justify-between">
