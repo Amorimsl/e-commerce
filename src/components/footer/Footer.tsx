@@ -43,6 +43,7 @@ const Footer = () => {
                 href="https://www.facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="rounded-full shadow-xl p-2 bg-white"
               >
                 <img
                   src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Facebook.svg"
@@ -54,17 +55,19 @@ const Footer = () => {
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="rounded-full shadow-xl p-2 bg-white"
               >
                 <img
                   src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Instagram.svg"
                   alt="Instagram"
-                  className="w-5 h-5"
+                  className="w-5 h-5 "
                 />
               </a>
               <a
                 href="https://www.twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="rounded-full shadow-xl p-2 bg-white"
               >
                 <img
                   src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Twitter.svg"
@@ -76,6 +79,7 @@ const Footer = () => {
                 href="https://www.linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="rounded-full shadow-xl p-2 bg-white"
               >
                 <img
                   src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/Linkedin.svg"
