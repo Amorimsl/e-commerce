@@ -360,13 +360,15 @@ const Checkout = () => {
                   </span>
                 </label>
               </div>
-              <button
-                className="md:w-[318px]  w-full h-[70px] bg-custom-btn-yellow  rounded-xl mt-4 border border-custom-text-transparent  flex items-center justify-center"
-                onClick={handleExternalSubmit}
-                name=" Place Order"
-              >
-                Place Order
-              </button>
+              <div className="flex items-center w-full justify-center ">
+                <button
+                  className="md:w-[318px]  w-full h-[70px] bg-custom-btn-yellow  rounded-xl mt-4 border border-custom-text-transparent  flex items-center justify-center"
+                  onClick={handleExternalSubmit}
+                  name=" Place Order"
+                >
+                  Place Order
+                </button>
+              </div>
             </div>
           </div>
         </div>
