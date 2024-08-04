@@ -16,3 +16,24 @@
 .highlighted-slide {
   transition: height 0.5s ease-in-out;
 }
+
+.splide__pagination {
+  position: absolute;
+  bottom: 10px; /* Ajuste a distância do fundo conforme necessário */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px; /* Espaçamento entre as bolinhas */
+}
+
+.splide__pagination__page {
+  width: 12px; /* Tamanho das bolinhas */
+  height: 12px;
+  background-color: #ccc; /* Cor das bolinhas inativas */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.splide__pagination__page.is-active {
+  background-color: #000; /* Cor das bolinhas ativas */
+}

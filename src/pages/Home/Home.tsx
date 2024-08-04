@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Slider from '../../components/slider/Slider';
 import Products from '../../components/products/Products';
 import { useProducts } from '../../context/exportContext';
@@ -8,17 +8,13 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const { products, setProducts } = useProducts();
   const { visibleProducts } = useProducts();
-  const [backgroundImage, setBackgroundImage] = useState('');
+  //const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
     fetch('http://54.196.12.70:4000/products')
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
-
-        const firstProduct = data[0];
-        const firstImageUrl = firstProduct.images.mainImage;
-        setBackgroundImage(firstImageUrl);
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, [setProducts]);
@@ -36,7 +32,8 @@ const Home = () => {
     navigate('/shop');
     window.scrollTo(0, 0);
   };
-
+  const backgroundImage =
+    'https://e-commerceuol.s3.eu-north-1.amazonaws.com/ImagesSprint-12/Image-Id-0.jpg';
   return (
     <>
       <section
