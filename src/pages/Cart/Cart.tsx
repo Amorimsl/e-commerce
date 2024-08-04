@@ -50,7 +50,7 @@ const Cart = () => {
                   <img src={item.images.mainImage} alt={item.title} />
                 </div>
                 <span className="max-w-[230px] truncate">{item.title}</span>
-                <span>Rp.{item.normalPrice}</span>
+                <span>Rp.{item.price}</span>
                 <div className="w-[123px] h-[64px] bg-white rounded-lg border border-gray-300 flex items-center justify-center">
                   <button
                     className="text-lg font-semibold text-black px-4"
@@ -67,7 +67,7 @@ const Cart = () => {
                   </button>
                 </div>
                 <span className="max-w-[90px] truncate">
-                  Rp.{item.normalPrice * item.quantity}
+                  Rp.{item.price * item.quantity}
                 </span>
                 <img
                   src="https://e-commerceuol.s3.eu-north-1.amazonaws.com/assets/lixeiraCart/lixeira.svg"
