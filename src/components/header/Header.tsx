@@ -215,7 +215,7 @@ const Header = () => {
             {cartQuantity > 0 && (
               <div
                 className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center md:-top-2 md:-right-2"
-                data-testid="cart-quantity"
+                data-testid="cart-quantity-mobile"
               >
                 {cartQuantity}
               </div>

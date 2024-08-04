@@ -89,7 +89,7 @@ const Cart = () => {
                   Rp.
                   {addToCard
                     .reduce(
-                      (total, item) => total + item.normalPrice * item.quantity,
+                      (total, item) => total + item.price * item.quantity,
                       0
                     )
                     .toFixed(4)}
@@ -101,7 +101,7 @@ const Cart = () => {
                   Rp.
                   {addToCard
                     .reduce(
-                      (total, item) => total + item.normalPrice * item.quantity,
+                      (total, item) => total + item.price * item.quantity,
                       0
                     )
                     .toFixed(4)}

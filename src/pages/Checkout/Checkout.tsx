@@ -67,7 +67,7 @@ const Checkout = () => {
 
   const calculateSubtotal = (products: Product[]): number =>
     products.reduce(
-      (total, product) => total + product.normalPrice * product.quantity,
+      (total, product) => total + product.price * product.quantity,
       0
     );
   const handleSubmit = (e: React.FormEvent) => {
@@ -258,12 +258,14 @@ const Checkout = () => {
                 <div className="flex flex-col gap-6">
                   <p className="text-2xl">Product</p>
                   {addToCard.map((product) => (
-                    <div key={product.id} className="flex justify-between">
-                      <p className="text-color-transparent">
-                        {product.title} <span className="text-black"> X</span>{' '}
-                        <span>{product.quantity}</span>
-                      </p>
-                    </div>
+                    <>
+                      <div key={product.id} className="flex justify-between">
+                        <p className="text-color-transparent">
+                          {product.title} <span className="text-black"> X</span>{' '}
+                          <span>{product.quantity}</span>
+                        </p>
+                      </div>
+                    </>
                   ))}
                   <p>Subtotal</p>
                   <p>Total</p>
