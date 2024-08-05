@@ -64,7 +64,7 @@ const GridProduct: React.FC<{
       {products.slice(0, visibleProducts).map((product) => (
         <div
           key={product.id}
-          className="relative bg-white rounded-lg overflow-hidden shadow-lg group flex flex-col cursor-pointer"
+          className="relative bg-white rounded-lg overflow-hidden shadow-lg group flex flex-col cursor-pointer  "
           onClick={() => handleCardClick(product)}
         >
           <div className="relative">
@@ -122,7 +122,7 @@ const GridProduct: React.FC<{
                       alt="Heart Icon"
                       className="w-4 h-4"
                     />
-                    <span>Link</span>
+                    <span>Like</span>
                   </div>
                 </div>
               </div>
